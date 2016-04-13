@@ -1,0 +1,47 @@
+#myform {
+  text-align: center;
+  padding: 5px;
+  margin: 2%;
+}
+.qty {
+    width: 40px;
+    height: 25px;
+    text-align: center;
+}
+input.qtyplus { 
+  width:25px; 
+  height:25px;
+}
+input.qtyminus { 
+  width:25px; 
+  height:25px;
+}
+.floating-left, .floating-right{
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 140%;
+  padding-top: 3%;
+}
+.floating-left {
+  float: left;
+  color:black;      
+  text-align: left;
+  width:65%;
+}
+.floating-right {
+  float: right;
+  text-align: right;
+  color:#8B4500;   
+}
+.floating-right2 {
+  float: right;   
+}
+.after-box {
+  clear: left;
+  text-align: left;
+  font-style:italic;
+}
+.img-responsive{
+  height: 100%;
+  width: 100%;
+  margin:0 auto;
+}
