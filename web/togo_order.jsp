@@ -21,6 +21,9 @@
   <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="validateinput.js"></script>
+  <script src="jquery.js" type="text/javascript"></script>
+
 </head>
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -82,29 +85,42 @@
           </form>
         </c:forEach>
       <tr>
-        <td colspan="2"> </td>
-        <td> </td>
-        <td colspan="2">Subtotal:</td>
-        <td >$<c:out value="${cart.totalCost}"/></td>
+        <td colspan="4">Subtotal:</td>
+        <td colspan="2">$<c:out value="${cart.totalCost}"/></td>
+      </tr>
+      <tr>
+         <form name="item" method="POST" action="CartController">
+        <td colspan="4">Tip:</td>
+        <td colspan="2">
+            $<input type='text' name="tip" value='<c:out value="${cartItem.tip}"/>'  size='2' >
+            <input type="submit" name="action" value="set tip"/>
+            <!--<input type="submit" name="addTip" value="Add"/>-->
+<!--            <button onclick="getElementById('totalcost').innerHTML=<c:out value="${cart.totalCost}+parseInt(getElementById('tips').value)"/>">Add</button>-->
+        </td>  
+        </form>
+      </tr>
+      <tr>
+        <td colspan="4"></td>
+        <td>Total:</td>
+        <td colspan="2" id="totalcost"><c:out value="${cart.totalCost+cart.tips}"/></td>
       </tr>
     </table>
     </div>
 
     <div class="col-sm-6">
-      <form class="form-horizontal" role="form">
-        <h3 class="center">Online booking form</h3>
+      <form class="form-horizontal" role="form" method='POST' action='CartController'>
         <h4>Payment Information</h4><hr>
         <div class="form-group"> 
           <label for="inputNameOnCard" class="col-sm-4 control-label">Name on Card</label>
           <div class="col-sm-8">
-            <input type="nameOnCard" class="form-control" id="inputNameOnCard" />
+            <input type="nameOnCard" class="form-control" id="inputNameOnCard" onkeyup="checkCardName(); return false;" required/><span class="status1"></span>
           </div>
         </div>
 
         <div class="form-group">
           <label for="inputCardNumber" class="col-sm-4 control-label">Card Number</label>
           <div class="col-sm-8">
-            <input type="cardNumber" class="form-control" id="inputCardNumber" />
+            <input type="cardNumber" class="form-control" id="inputCardNumber" onkeyup="checkCardNumber(); return false;" required/><span class="status2"></span>
             <div id="divCardTypes">                                              
               <img src="Pic/card/VISA.png" alt="VISA">                        
               <img src="Pic/card/MASTERCARD.png" alt="MASTERCARD">                        
@@ -154,14 +170,14 @@
         <div class="form-group"> 
           <label for="inputSecurityCode" class="col-sm-4 control-label">Security Code</label>
           <div class="col-sm-8">
-            <input type="securityCode" class="form-control" id="inputSecurityCode" />
+            <input type="securityCode" class="form-control" id="inputSecurityCode" id="inputSecurityNumber" onkeyup="checkSecurityNumber(); return false;" required/><span class="status3"></span>
           </div>
         </div>
 
         <div class="form-group"> 
           <label for="inputBillingZipCode" class="col-sm-4 control-label">Billing Zip Code</label>
           <div class="col-sm-8">
-            <input type="billingZipCode" class="form-control" id="inputBillingZipCode" />
+            <input type="billingZipCode" class="form-control" id="inputBillingZipCode" onkeyup="checkZipCode(); return false;" required/><span class="status4"></span>
           </div>
         </div>
 
@@ -169,25 +185,25 @@
         <div class="form-group">
           <label for="inputFirstName" class="col-sm-4 control-label">First Name</label>
           <div class="col-sm-8">
-            <input type="firstName" class="form-control" id="inputFirstName" />
+            <input type="firstName" class="form-control" id="inputFirstName" name="inputFirstName" onkeyup="checkFirstName(); return false;" required/><span class="status5"></span>
           </div>
         </div>
 
         <div class="form-group">
           <label for="inputLastName" class="col-sm-4 control-label">Last Name</label>
           <div class="col-sm-8">
-            <input type="lastName" class="form-control" id="inputLastName" />
+            <input type="lastName" class="form-control" id="inputLastName" name="inputLastName" onkeyup="checkLastName(); return false;" required/><span class="status6"></span>
           </div>
         </div>
 
         <div class="form-group">
           <label for="inputEmail" class="col-sm-4 control-label">Email</label>
           <div class="col-sm-8">
-            <input type="email" class="form-control" id="inputEmail" />
+            <input type="email" class="form-control" id="inputEmail" name="inputEmail" onkeyup="checkEmail(); return false;" required/><span class="status7"></span>
           </div>
         </div>
-        <div class="checkbox">               
-            <label><input type="checkbox"/>Yes, I want to receive messages from XXX.</label>
+        <div class="checkbox" style="text-align:right">              
+            <label><input type="checkbox" name="receiveEmail" value="yesplease"/>Yes, I want to receive email from Seudo.</label>
         </div>
 
         <div class="form-group">
@@ -197,28 +213,32 @@
           </div>        
         </div>
 
-
         <div class="form-group">
-          <label for="inputPhoneNumber" class="col-sm-4 control-label">Phone number*</label>
+          <label for="inputPhoneNumber" class="col-sm-4 control-label">
+            <span data-toggle="tooltip" data-placement="bottom" title="Click to see why we need phone number">
+              <button type="button" class="btn btn-link" data-toggle="collapse tooltip" data-target="#phoneexplain" style="color:#6B6B6B; text-decoration: underline; font-size:110%">Phone number</button>
+            </span>
+          </label>
           <div class="col-sm-8">
-            <input type="phoneNumber" class="form-control" id="inputPhoneNumber" />
+            <input type="phoneNumber" class="form-control" id="inputPhoneNumber" name="inputPhoneNumber" onkeyup="checkPhoneNumber(); return false;" required/><span class="status9"></span>
           </div>
-        </div>
-
-        <div><p>*We’ll only use this information to send your order confirmation.<br>Phone number is also used to:
+          <div id="phoneexplain" class="collapse">
+    <p>*We’ll only use this information to send your order confirmation.<br/>Phone number is also used to:
           <ul>
             <li>Record your dining history</li>
             <li>Offer you special promotion if eligible</li>
             <li>Send you promotion news or account info through message</li>
             <li>More information please consult our manager</li>
           </ul></p>
+  </div>
         </div>
 
-
-
         <div class="form-group">
-          <div class="col-sm-12 form-group">
-            <button class="btn btn-default pull-right" type="submit">Place order</button>
+          <div class="col-sm-12 form-group" style="text-align:center; margin-top:10px">
+            <input type="hidden" id="togotips" />
+            <input type="hidden" id="togototal" />
+            <input type="hidden" name="action" value="togocheckout"/>
+            <input type="submit" name="addToCart" value="Place order"/>
           </div>
         </div>
       </form>  

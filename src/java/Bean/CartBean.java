@@ -15,10 +15,18 @@ import java.util.HashMap;
 public class CartBean {
     private HashMap<String, CartItemBean> alCartItems = new HashMap<String, CartItemBean>();
     private double totalCost;
+    private double tip;
     
+            
+            
     public int getCartSize(){
         return alCartItems.size();
     }
+    
+    public HashMap getAlCartItems(){
+        return alCartItems;
+    }
+    
 
     public void addCartItem(String strItemNo, String strItemName, String strPrice, String strCategory, String strQuantity){
         double subSumCost = 0.0;
@@ -127,5 +135,23 @@ public class CartBean {
         }
         setTotalCost(totalCost);
     }
+
+    public void setTips(String strtips) {
+        Double tips = 0.0;
+        try{
+            tips = Double.parseDouble(strtips);
+            if(tips>0){
+                tip=tips;
+            }
+        }catch (NumberFormatException nfe){
+            System.out.println("Error while set tips:" + nfe.getMessage());
+            nfe.printStackTrace();
+        }
+    }
+
+    public Double getTips() {
+        return tip;
+    }
+
     
 }

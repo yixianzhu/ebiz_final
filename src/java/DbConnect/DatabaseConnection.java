@@ -24,8 +24,8 @@ public class DatabaseConnection {
         else {
             try
             {Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String connectionURL = "jdbc:derby://localhost:1527/user";
-            connection = DriverManager.getConnection(connectionURL, "yang", "19890914");
+            String connectionURL = "jdbc:derby://localhost:1527/is2730";
+            connection = DriverManager.getConnection(connectionURL, "is2730", "is2730");
             } catch (ClassNotFoundException e) {
                System.err.println("A ClassNotFound Exception was caught: " + e.getMessage());
             } catch (SQLException e) {

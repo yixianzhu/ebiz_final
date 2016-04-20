@@ -4,9 +4,17 @@
         <servlet-name>CartController</servlet-name>
         <servlet-class>Servlet.CartController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>giftCardController</servlet-name>
+        <servlet-class>Servlet.giftCardController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CartController</servlet-name>
         <url-pattern>/CartController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>giftCardController</servlet-name>
+        <url-pattern>/giftCardController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

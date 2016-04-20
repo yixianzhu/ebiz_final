@@ -1,5 +1,28 @@
 .carousel-inner > .item > img,
   .carousel-inner > .item > a > img{
-width: 35%;
+width: 80%;
 margin: auto;
+}
+
+.term {
+	font-family: Abel;
+	color: #827D7D;
+	font-size: 90%;
+	padding: 0;
+}
+
+legend{
+	margin-top:5%;
+}
+
+#giftcard_p {
+	font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+	color: #827D7D;
+	font-size: 18px;
+	padding: 5%;
+}
+
+.status10, .status11, .status12, .status13{
+	color:red;
+	font-size: 80%;
 }

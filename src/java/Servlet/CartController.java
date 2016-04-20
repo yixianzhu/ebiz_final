@@ -6,8 +6,13 @@
 package Servlet;
 
 import Bean.CartBean;
+import Bean.CartItemBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +24,14 @@ import javax.servlet.http.HttpSession;
  * @author zhuyixian
  */
 public class CartController extends HttpServlet {
+    final private togoDAO togoDao;
+    final private emailDAO emailDao;
+    
+    public CartController() {
+        super();
+        togoDao = new togoDAO();
+        emailDao = new emailDAO();
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,9 +48,9 @@ public class CartController extends HttpServlet {
         String cartAction = request.getParameter("action");
 
         if(cartAction == null && cartAction.equals("")){
-            System.out.println("The action is null");
+            // System.out.println("The action is null");
         }else{
-            System.out.println("The action is not null");
+            // System.out.println("The action is not null");
             if(cartAction.equals("add")){
                 System.out.println("add an item!");
                 addToCart(request);
@@ -47,6 +60,12 @@ public class CartController extends HttpServlet {
                 response.sendRedirect("togo_order.jsp");
             }else if(cartAction.equals("delete")){
                 deleteCart(request);
+                response.sendRedirect("togo_order.jsp");
+            }else if(cartAction.equals("togocheckout")){
+                togocheckout(request);
+                response.sendRedirect("togo_order.jsp");
+            }else if(cartAction.equals("set tip")){
+                settip(request);
                 response.sendRedirect("togo_order.jsp");
             }
         }
@@ -60,7 +79,7 @@ public class CartController extends HttpServlet {
         String strPrice = request.getParameter("mealPrice");
         String strCategory = request.getParameter("mealCategory");
         String strQuantity = request.getParameter(strItemNo);
-        System.out.println(strItemName+" "+strCategory+" "+strItemNo+" "+strPrice+" "+strQuantity);
+//        System.out.println(strItemName+" "+strCategory+" "+strItemNo+" "+strPrice+" "+strQuantity);
 
         CartBean cartBean;
 
@@ -106,6 +125,57 @@ public class CartController extends HttpServlet {
             cartBean = new CartBean();
         }
         cartBean.updateCartItem(strItemNo, strQuantity);
+    }
+    
+    protected void togocheckout(HttpServletRequest request) {
+        System.out.println("call togo checkout function");
+        HttpSession session = request.getSession();
+        String strPhoneNumber = request.getParameter("inputPhoneNumber");
+        String strEmail = request.getParameter("inputEmail");
+        String strFirstName = request.getParameter("inputFirstName");
+        String strLastName = request.getParameter("inputLastName");
+        String customername = strFirstName +" "+ strLastName; 
+        String date = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+        String orderid = date+strPhoneNumber.substring(5);
+        Object objCartBean = session.getAttribute("cart");
+
+        if(objCartBean != null){
+            CartBean cartBean = (CartBean)objCartBean;
+            String orderedmeals ="";
+            HashMap<String, CartItemBean> alCartItems = cartBean.getAlCartItems();
+            for (CartItemBean cartItem: alCartItems.values()) {
+                togoDao.insertmeal(orderid, cartItem);
+                orderedmeals += cartItem.getItemName();
+                if(cartItem.getQuantity()>1){
+                    orderedmeals += "X" + cartItem.getQuantity() + " ";
+                }
+            }
+            Double tips = cartBean.getTips();
+            Double charge = tips+cartBean.getTotalCost();
+            togoDao.insertorder(orderid, strPhoneNumber, cartBean.getTotalCost(), tips, charge);
+            togoDao.tellmanager(orderid, strPhoneNumber, customername, orderedmeals);
+        }
+        CartBean cartBean = new CartBean();
+        request.setAttribute("cart", cartBean);
+
+        if(request.getParameter("receiveEmail")!=null){  
+            
+            emailDao.togoEmail(strEmail, customername);
+        }
+        System.out.println("successfully ckeckout");
+    }
+    
+    private void settip(HttpServletRequest request) {
+        System.out.println("call togo addtip function");
+        HttpSession session = request.getSession();
+        String strtips = request.getParameter("tip");
+        CartBean cartBean;
+
+        Object objCartBean = session.getAttribute("cart");
+        if(objCartBean != null){
+            cartBean = (CartBean)objCartBean;
+            cartBean.setTips(strtips);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
