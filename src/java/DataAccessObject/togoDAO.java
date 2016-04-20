@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Servlet;
+package DataAccessObject;
 
 import Bean.CartItemBean;
 import DbConnect.DatabaseConnection;
@@ -38,7 +38,7 @@ public class togoDAO {
 		}
     }
 
-    void insertorder(String orderid, String strPhoneNumber, double totalCost, Double tips, Double charge) {
+    public void insertorder(String orderid, String strPhoneNumber, double totalCost, Double tips, Double charge) {
         try { 
             String years = orderid.substring(0,4);
             String month = orderid.substring(4,6);

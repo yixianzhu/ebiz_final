@@ -5,6 +5,8 @@
  */
 package Servlet;
 
+import DataAccessObject.giftcardDAO;
+import DataAccessObject.emailDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;

@@ -5,7 +5,7 @@
  */
 package Servlet;
 
-import DAO.Dao;
+import DataAccessObject.Dao;
 import Bean.MealBean;
 import java.io.IOException;
 import java.io.PrintWriter;

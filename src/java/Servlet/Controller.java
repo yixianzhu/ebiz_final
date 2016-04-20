@@ -9,7 +9,7 @@ package Servlet;
  *
  * @author xun yang
  */
-import DAO.Dao;
+import DataAccessObject.Dao;
 import Bean.MealBean;
 import java.io.File;
 import java.io.PrintWriter;

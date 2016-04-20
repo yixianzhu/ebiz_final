@@ -5,6 +5,8 @@
  */
 package Servlet;
 
+import DataAccessObject.togoDAO;
+import DataAccessObject.emailDAO;
 import Bean.CartBean;
 import Bean.CartItemBean;
 import java.io.IOException;
@@ -148,6 +150,8 @@ public class CartController extends HttpServlet {
                 orderedmeals += cartItem.getItemName();
                 if(cartItem.getQuantity()>1){
                     orderedmeals += "X" + cartItem.getQuantity() + " ";
+                }else{
+                    orderedmeals += " ";
                 }
             }
             Double tips = cartBean.getTips();
