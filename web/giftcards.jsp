@@ -122,7 +122,7 @@
           <form class="form-horizontal" role="form"  action='giftCardController'>            
             <div class="row">
               <div class="column">
-                <legend>To</legend>
+                <legend>To:</legend>
               </div>
               <div class="column">
                 <div class="col-sm-4">
@@ -132,7 +132,7 @@
             </div>
             <div class="row">
               <div class="column">
-                <legend>From</legend>
+                <legend>From:</legend>
               </div>
               <div class="column">
                 <div class="col-sm-4">
