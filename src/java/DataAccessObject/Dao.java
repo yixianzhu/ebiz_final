@@ -105,9 +105,7 @@ public class Dao {
     }
     public void cancelTable() {   
     }
-    public void checkoutTable() {
     
-    }
 
     public List<MealBean> getAllMeal() {
         List<MealBean> meals = new ArrayList<MealBean>();
@@ -154,12 +152,19 @@ public class Dao {
     }  
     public void addTableCart(MealBean meal, CalebBean user) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into tablecart(tableid,phone,mealid,quantity,status) values (?, ?, ?, ?,?)");
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select price from finalmeal where id='"+meal.getId()+"'");
+            double subtotal=0;
+            while (rs.next()) {
+                subtotal=rs.getDouble("price")* user.getQuantity();
+            }
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into tablecart(tableid,phone,mealid,quantity,status,subtotal) values (?, ?, ?, ?,?,?)");
             preparedStatement.setString(1, user.getTableid());
             preparedStatement.setString(2, user.getUserid());
             preparedStatement.setString(3, meal.getId());
             preparedStatement.setInt(4, user.getQuantity());  
             preparedStatement.setString(5, "Not served");
+             preparedStatement.setDouble(6, subtotal);
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {

@@ -30,6 +30,7 @@ import java.io.Serializable;
     private String time;
     private String guest;
     private String date;
+    private double cost;
     public CalebBean() {
         status = defaul;
         userid=new String();
@@ -67,6 +68,8 @@ import java.io.Serializable;
     public void setGuest(String value) {guest = value;}
     public String getDate() {return date;}
     public void setDate(String value) {date = value;}
+    public double getCost() {return cost;}
+    public void setCost(double value) {cost = value;}
     
     
 }

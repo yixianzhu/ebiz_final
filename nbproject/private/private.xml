@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/xun%20yang/Desktop/ebizfinal/ebiz_final/src/java/DbConnect/DatabaseConnection.java</file>
+            <file>file:/C:/Users/xun%20yang/Desktop/ebizfinal/ebiz_final/web/togo_menu.jsp</file>
+            <file>file:/C:/Users/xun%20yang/Desktop/ebizfinal/ebiz_final/web/walkin_order.jsp</file>
+            <file>file:/C:/Users/xun%20yang/Desktop/ebizfinal/ebiz_final/web/walkin_menu.jsp</file>
+            <file>file:/C:/Users/xun%20yang/Desktop/ebizfinal/ebiz_final/src/java/Servlet/Controller.java</file>
+            <file>file:/C:/Users/xun%20yang/Desktop/ebizfinal/ebiz_final/src/java/Servlet/AddToCart.java</file>
         </group>
     </open-files>
 </project-private>

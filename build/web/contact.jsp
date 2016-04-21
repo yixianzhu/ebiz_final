@@ -33,7 +33,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="home.html">HOME</a></li>
+            <li><a href="home.jsp">HOME</a></li>
             <li><a href="Controller?action=menu">MENU</a></li>
             <li><a href="Controller?action=togomenu">ORDER ONLINE</a></li>
             <li><a href="giftcards.jsp">GIFT CARDS</a></li>

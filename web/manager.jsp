@@ -193,11 +193,11 @@ $(document).ready(function() {
         <th scope="col">Action</th>         
     </tr> 
 </table>
-<form role="form" action="Controller" method="POST"  enctype="multipart/form-data" name="addMeal">
-    <input type="hidden" name="hint" value="" />
+<form role="form" action="Checkout" method="POST" name="checkout">
+    <input type="hidden" name="tableid" value="1" />
     <div class="form-group">
       <label for="mealID">Employee ID:</label>
-      <input type="text" class="form-control" id="id" placeholder="Enter your ID" name="id"/>
+      <input type="text" class="form-control" id="id" placeholder="Enter your ID" name="employeeid"/>
     </div>
 <input type="submit" name="Submit" value="Check out for table 1">
 </form>
@@ -216,8 +216,8 @@ $(document).ready(function() {
         <th scope="col">Action</th>         
     </tr> 
 </table>
- <form role="form" action="TableController" method="POST" name="addMeal">
-    <input type="hidden" name="tableid" value="1" />
+ <form role="form" action="Checkout" method="POST" name="checkout">
+    <input type="hidden" name="tableid" value="2" />
     <div class="form-group">
       <label for="id">Employee ID:</label>
       <input type="text" class="form-control" id="employeeid" placeholder="Enter your ID" name="employeeid"/>
