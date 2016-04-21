@@ -1,3 +1,10 @@
+<%-- 
+    Document   : home
+    Created on : Apr 20, 2016, 11:04:47 PM
+    Author     : xun yang
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +53,7 @@
       </a>
     </div>
     <div class="col-sm-4">
-      <a href="Controller?action=walkinmenu">
+      <a href="walkin.jsp">
         <span class="glyphicon glyphicon-cutlery logo-small"></span>
         <h4 id="homelogo">WALK IN</h4>
         <p>A sublime, elevated experience</p>

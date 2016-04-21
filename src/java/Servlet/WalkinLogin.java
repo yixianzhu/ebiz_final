@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import Bean.CalebBean;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -57,7 +58,7 @@ public class WalkinLogin extends HttpServlet {
         String f=null;
         if (valid==true){
          //  f= "/menu.jsp"; 
-         f= "/Controller?action=menu";
+         f= "/Controller?action=walkinmenu";
         }
         else {
              f= "/walkin.html"; 

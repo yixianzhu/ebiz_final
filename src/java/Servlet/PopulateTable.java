@@ -1,5 +1,7 @@
 package Servlet;
 
+import DataAccessObject.Dao;
+import Bean.MealBean;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,17 +21,17 @@ import com.google.gson.reflect.TypeToken;
 @WebServlet("/PopulateTable")
 public class PopulateTable extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+        private Dao dao;
     public PopulateTable() {
-        
+        dao = new Dao();
     }
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
-		ArrayList<Meal> meal=new ArrayList<Meal>();
-		meal=FetchData.getAllMeals();
+		List<MealBean> meal=new ArrayList<MealBean>();
+		meal=dao.getAlltables();
 		Gson gson = new Gson();
-		JsonElement element = gson.toJsonTree(meal, new TypeToken<List<Meal>>() {}.getType());
+		JsonElement element = gson.toJsonTree(meal, new TypeToken<List<MealBean>>() {}.getType());
 
 		JsonArray jsonArray = element.getAsJsonArray();
 		response.setContentType("application/json");

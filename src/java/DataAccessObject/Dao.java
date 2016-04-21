@@ -9,11 +9,10 @@ package DataAccessObject;
  *
  * @author xun yang
  */
-
-import Bean.MealBean;
 import Bean.CalebBean;
+import Bean.MealBean;
+import Servlet.WalkinLogin;
 import DbConnect.DatabaseConnection;
-import Servlet.CloginServlet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,7 +27,21 @@ public class Dao {
     public Dao() {
         connection = DatabaseConnection.getConnection();
     }
-
+    public CalebBean getUserbean(){
+      CalebBean c=new CalebBean();
+      try {
+         Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("select quantity from tablecart where phone='"+WalkinLogin.userid+"'");
+        int total=0;
+            while (rs.next()) {
+                total=total+rs.getInt("quantity");
+            }
+            c.setOrder(total);
+        } catch (SQLException e) {
+        System.err.println("A SQLException was caught: " + e.getMessage());
+        }
+      return c;
+    }
     public void addMeal(MealBean meal) {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("insert into finalmeal(id,name,category,description,price,imagepath) values (?, ?, ?, ? ,?,?)");
@@ -77,6 +90,24 @@ public class Dao {
           System.err.println("A SQLException was caught: " + e.getMessage());
         }
     }
+    
+    public void updateTable(String tableid, String mealid) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("update tablecart set status='served'" +
+                            "where tableid=? and mealid=?");          
+            preparedStatement.setString(1, tableid);
+            preparedStatement.setString(2, mealid);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+          System.err.println("A SQLException was caught: " + e.getMessage());
+        }
+    }
+    public void cancelTable() {   
+    }
+    public void checkoutTable() {
+    
+    }
 
     public List<MealBean> getAllMeal() {
         List<MealBean> meals = new ArrayList<MealBean>();
@@ -99,6 +130,7 @@ public class Dao {
 
         return meals;
     }
+    
 
     public MealBean getMealById(String mealId) {
         MealBean meal = new MealBean();
@@ -120,30 +152,61 @@ public class Dao {
 
         return meal;
     }  
-    public void addCart(MealBean meal, CalebBean user) {
+    public void addTableCart(MealBean meal, CalebBean user) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into finalcart(userid,mealid,quantity) values (?, ?, ?)");
-            preparedStatement.setString(1, user.getUserid());
-            preparedStatement.setString(2, meal.getId());
-            preparedStatement.setInt(3, user.getQuantity());       
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into tablecart(tableid,phone,mealid,quantity,status) values (?, ?, ?, ?,?)");
+            preparedStatement.setString(1, user.getTableid());
+            preparedStatement.setString(2, user.getUserid());
+            preparedStatement.setString(3, meal.getId());
+            preparedStatement.setInt(4, user.getQuantity());  
+            preparedStatement.setString(5, "Not served");
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
            System.err.println("A SQLException was caught: " + e.getMessage());
         }
     }
+     public List<MealBean> getAlltables() {
+        List<MealBean> meals = new ArrayList<MealBean>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select * from tablecart,finalmeal where tablecart.mealid=finalmeal.id");
+            while (rs.next()) {
+                MealBean meal = new MealBean();
+                meal.setTableid(rs.getString("tableid"));
+                meal.setId(rs.getString("id"));
+                meal.setName(rs.getString("name"));
+                meal.setCategory(rs.getString("category"));
+                meal.setDescription(rs.getString("description"));
+                meal.setStatus(rs.getString("status"));
+                meal.setPrice(rs.getDouble("price"));
+                meal.setImage(rs.getString("imagepath"));
+                meal.setQuantity(rs.getInt("quantity"));                
+                int q=rs.getInt("quantity");
+                double price=rs.getDouble("price");
+                double total=price*q;
+                meal.setPrice(total);
+                meals.add(meal);
+            }
+        } catch (SQLException e) {
+        System.err.println("A SQLException was caught: " + e.getMessage());
+        }
+
+        return meals;
+    }
     
      public List<MealBean> getMyCart() {
          List<MealBean> meals = new ArrayList<MealBean>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from finalcart,finalmeal where cart.userid='"+CloginServlet.userid+"'"+"and cart.mealid=meal.id");
+            ResultSet rs = statement.executeQuery("select * from tablecart,finalmeal where tablecart.phone='"+WalkinLogin.userid+"'"+"and tablecart.mealid=finalmeal.id");
         while (rs.next()) {
                 MealBean meal = new MealBean();
                 meal.setId(rs.getString("id"));
                 meal.setName(rs.getString("name"));
                 meal.setCategory(rs.getString("category"));
                 meal.setDescription(rs.getString("description"));
+                meal.setImage(rs.getString("imagepath"));
                 meal.setQuantity(rs.getInt("quantity"));                
                 int q=rs.getInt("quantity");
                 double price=rs.getDouble("price");
@@ -159,9 +222,9 @@ public class Dao {
      public void deleteCart(String mealId) {
         try {
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("delete from finalcart where mealid=? and userid=?");            
+                    .prepareStatement("delete from tablecart where mealid=? and phone=?");            
             preparedStatement.setString(1, mealId);
-            preparedStatement.setString(2, CloginServlet.userid);
+            preparedStatement.setString(2, WalkinLogin.userid);
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -170,12 +233,54 @@ public class Dao {
     }
      public void clearCart() {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("delete from finalcart where userid=?");           
-            preparedStatement.setString(1, CloginServlet.userid);
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from tablecart where phone=?");           
+            preparedStatement.setString(1, WalkinLogin.userid);
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
            System.err.println("A SQLException was caught: " + e.getMessage());
         }
     }
+     
+    public void addReservation(CalebBean user){
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into reservation(phone,firstname,lastname,email,time,guest,date) values (?, ?, ?, ? ,?,?,?)");
+            preparedStatement.setString(1, user.getPhone());
+            preparedStatement.setString(2, user.getFname());
+            preparedStatement.setString(3, user.getLname());
+            preparedStatement.setString(4, user.getEmail());
+            preparedStatement.setString(5, user.getTime());
+            preparedStatement.setString(6, user.getGuest());
+            preparedStatement.setString(7, user.getDate());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.err.println("A SQLException was caught: " + e.getMessage());
+        }
+    }
+    
+    public List<CalebBean> getAllReservation(){
+        List<CalebBean> users = new ArrayList<CalebBean>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select * from reservation");
+            while (rs.next()) {
+                CalebBean user = new CalebBean();
+                user.setFname(rs.getString("firstname"));
+                user.setLname(rs.getString("lastname"));
+                user.setPhone(rs.getString("phone"));
+                user.setEmail(rs.getString("email"));
+                user.setDate(rs.getString("date"));
+                user.setTime(rs.getString("time"));
+                user.setGuest(rs.getString("guest"));                
+                users.add(user);
+            }
+        } catch (SQLException e) {
+        System.err.println("A SQLException was caught: " + e.getMessage());
+        }
+
+        return users;
+    }
+     
+    
 }

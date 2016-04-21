@@ -39,7 +39,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="home.html">HOME</a></li>
+            <li><a href="home.jsp">HOME</a></li>
             <li><a href="Controller?action=menu">MENU</a></li>
             <li><a href="giftcards.jsp">GIFT CARDS</a></li>
             <li><a href="contact.jsp">CONTACT</a></li>
@@ -78,70 +78,86 @@
         </div>
         <div class="col-sm-5">
 
-          <form class="form-horizontal" role="form">
-            <h3 class="center">Online booking form</h3>
-            <div class="form-group"> 
-              <label for="inputFirstName" class="col-sm-4 control-label">First Name</label>
-              <div class="col-sm-8">
-                <input type="firstName" class="form-control" id="inputFirstName" />
-              </div>
-            </div>
+          <form class="form-horizontal" method="post" action="Reservation" role="form">
+        <h3 class="center">Online Reservation form</h3>
+        <div class="form-group"> 
+          <label for="inputFirstName" class="col-sm-4 control-label">First Name</label>
+          <div class="col-sm-8">
+            <input name="fname" type="text" class="form-control" id="inputFirstName" />
+          </div>
+        </div>
 
-            <div class="form-group">
-              <label for="inputLastName" class="col-sm-4 control-label">Last Name</label>
-              <div class="col-sm-8">
-                <input type="lastName" class="form-control" id="inputLastName" />
-              </div>
-            </div>
+        <div class="form-group">
+          <label for="inputLastName" class="col-sm-4 control-label">Last Name</label>
+          <div class="col-sm-8">
+            <input name="lname" type="text" class="form-control" id="inputLastName" />
+          </div>
+        </div>
 
-            <div class="form-group">
-              <label for="inputPhoneNumber" class="col-sm-4 control-label">Phone number</label>
-              <div class="col-sm-8">
-                <input type="phoneNumber" class="form-control" id="inputPhoneNumber" />
-              </div>
-            </div>
+        <div class="form-group">
+          <label for="inputPhoneNumber" class="col-sm-4 control-label">Phone number</label>
+          <div class="col-sm-8">
+            <input name="phone" type="text" class="form-control" id="inputPhoneNumber" />
+          </div>
+        </div>
 
-            <div class="form-group">
-              <label for="inputEmail" class="col-sm-4 control-label">Email</label>
-              <div class="col-sm-8">
-                <input type="email" class="form-control" id="inputEmail" />
-              </div>
-            </div>
+        <div class="form-group">
+          <label for="inputEmail" class="col-sm-4 control-label">Email</label>
+          <div class="col-sm-8">
+            <input name="email" type="text" class="form-control" id="inputEmail" />
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inputDate" class="col-sm-4 control-label">Date</label>
+          <div class="col-sm-8">
+            <input name="date" type="date" class="form-control" id="inputDate" />
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inputDateTime" class="col-sm-4 control-label">Pick your time</label>
+          <div class="col-sm-8">
+            <select name="time" class="form-control">
+              <option value="5 pm">5 pm</option>
+              <option value="5:30 pm">5:30 pm</option>
+              <option value="6 pm">6 pm</option>
+              <option value="6:30 pm">6:30 pm</option>
+              <option value="7 pm">7 pm</option>
+              <option value="7:30 pm">7:30 pm</option>
+              <option value="8 pm">8 pm</option>
+              <option value="8:30 pm">8:30 pm</option>
+            </select>
+          </div>        
+        </div>
 
-            <div class="form-group">
-              <label for="inputDateTime" class="col-sm-4 control-label">Pick your time</label>
-              <div class="col-sm-8">
-                  <input type="dateTime" class="form-control" id="inputDateTime" />
-              </div>        
-            </div>
+        <div class="form-group">
+          <label for="inputGuestNumber" class="col-sm-4 control-label">Number of guests</label>
+          <div class="col-sm-8">
+            <select name="guest" class="form-control">
+              <option value="1">1 person</option>
+              <option value="1">2 people</option>
+              <option value="3to4">3 to 4 people</option>
+              <option value="5to6">5 to 6 people</option>
+              <option value="morethan6">more than 6 people</option>
+            </select>
+          </div>        
+        </div>
 
-            <div class="form-group">
-              <label for="inputGuestNumber" class="col-sm-4 control-label">Number of guests</label>
-              <div class="col-sm-8">
-                <select class="form-control">
-                  <option value="1">1 person</option>
-                  <option value="1">2 people</option>
-                  <option value="3to4">3 to 4 people</option>
-                  <option value="5to6">5 to 6 people</option>
-                  <option value="morethan6">more than 6 people</option>
-                </select>
-              </div>        
+   <!--     <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-12">
+            <div class="checkbox">               
+              <label><input type="checkbox"/>Yes, I want to receive email messages from XXX.</label>
             </div>
+          </div>
+        </div>  -->
 
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-12">
-                <div class="checkbox">               
-                  <label><input type="checkbox"/>Yes, I want to receive email messages from Seudo.</label>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-sm-12 form-group">
-                <button class="btn btn-default pull-right" type="submit">Send</button>
-              </div>
-            </div>
-          </form>  
+        <div class="form-group">
+          <div class="col-sm-12 form-group">
+            <button class="btn btn-default pull-right" type="submit">Send</button>
+          </div>
+        </div>
+      </form>  
         </div>
       </div>
     </div>

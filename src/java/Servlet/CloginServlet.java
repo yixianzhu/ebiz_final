@@ -46,8 +46,8 @@ public class  CloginServlet extends HttpServlet {
         String uname=null;
         String category=null;
         try{Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String connectionURL = "jdbc:derby://localhost:1527/user";
-            conn = DriverManager.getConnection(connectionURL, "yang", "19890914");
+            String connectionURL = "jdbc:derby://localhost:1527/is2730";
+            conn = DriverManager.getConnection(connectionURL, "is2730", "is2730");
             st = conn.createStatement();
             String q1 = new String("SELECT * FROM userinfo WHERE user_name = "+"'"+
                     u+"'");
@@ -73,7 +73,7 @@ public class  CloginServlet extends HttpServlet {
             cb.setUserid(u);
             userid=u;
             String f=null;           
-            if(category.equals("customer")){
+            if(category.equals("staff")){
             f="/staff.jsp";
             }
             else{

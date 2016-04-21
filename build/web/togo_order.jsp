@@ -21,8 +21,8 @@
   <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <script src="validateinput.js"></script>
-  <script src="jquery.js" type="text/javascript"></script>
+  <script src="js/validateinput.js"></script>
+  <script src="js/jquery.js" type="text/javascript"></script>
 
 </head>
 
@@ -39,7 +39,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="home.html">HOME</a></li>
+        <li><a href="home.jsp">HOME</a></li>
         <li><a href="Controller?action=togomenu">ORDER ONLINE</a></li>
         <li><a href="giftcards.jsp">GIFT CARDS</a></li>
         <li><a href="contact.jsp">CONTACT</a></li>

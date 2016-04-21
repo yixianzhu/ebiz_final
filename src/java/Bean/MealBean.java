@@ -5,13 +5,14 @@
  */
 package Bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author xun yang
  */
-public class MealBean {
+public class MealBean extends Object implements Serializable{
     private String id;
     private String name;
     private String category;
@@ -21,6 +22,8 @@ public class MealBean {
     private int quantity;
     private String size;
     private String image;
+    private String tableid;
+    private String status;
     public String getId() {
         return id;
     }
@@ -62,6 +65,18 @@ public class MealBean {
     }
     public void setPrice(double price) {
         this.price = price;
+    }
+    public String getTableid() {
+        return tableid;
+    }
+    public void setTableid(String tableid) {
+        this.tableid = tableid;
+    }
+     public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
     }
     public int getQuantity() {return quantity;}
     public void setQuantity(int value) {quantity = value;}
