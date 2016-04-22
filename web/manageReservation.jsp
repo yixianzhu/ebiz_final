@@ -34,29 +34,27 @@
                 <th>Email</th>
                 <th>Date</th>                
                 <th>Time</th>
-                <th>Guest</th
-             
+                <th>Guest</th>
+                <th>Action</th>             
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${users}" var="user">
-            <form method="post" action="AddToCart" id="send">
+            <c:forEach items="${users}" var="user">       
                 <tr>
-                    <td><c:out value="${user.fname}" /><input type="hidden" name="id" value="${meal.id}" /></td>              
+                    <td><c:out value="${user.fname}" /><input type="hidden" name="phone" value="${user.phone}" /></td>              
                     <td><c:out value="${user.lname}" /></td>
                     <td><c:out value="${user.phone}" /></td>     
                     <td><c:out value="${user.email}" /></td>
                     <td><c:out value="${user.date}" /></td>
                     <td><c:out value="${user.time}" /></td>                 
                     <td><c:out value="${user.guest}" /></td>
-                    <td><input type="submit" name="submit" value="deal with it"/></td>
-                </tr>
-            </form>
+                    <td><a href="Reservation?action=delete&userid=${user.phone}">Remove the reservation that has been served</a></td>
+                </tr>         
             </c:forEach>
         </tbody>
     </table>
     <br/>
-    <div><a href="AddToCart?action=viewcart">See your cart</a></div>
+    <div><a href="manager.jsp">Go back to managing interface</a></div>
     <br/>
         <div><a href ="index.jsp">Log out</a></div>
 </body>

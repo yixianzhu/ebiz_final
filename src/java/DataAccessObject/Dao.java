@@ -74,11 +74,6 @@ public class Dao {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement("update finalmeal set name=?, category=?, calories=?, price=?" +
                             "where id=?");          
-           System.out.println(meal.getId());
-           System.out.println(meal.getName());
-           System.out.println(meal.getCategory());
-           System.out.println(meal.getDescription());
-           System.out.println(meal.getPrice());
             preparedStatement.setString(1, meal.getName());
             preparedStatement.setString(2, meal.getCategory());
             preparedStatement.setString(3, meal.getDescription());
@@ -247,45 +242,7 @@ public class Dao {
         }
     }
      
-    public void addReservation(CalebBean user){
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into reservation(phone,firstname,lastname,email,time,guest,date) values (?, ?, ?, ? ,?,?,?)");
-            preparedStatement.setString(1, user.getPhone());
-            preparedStatement.setString(2, user.getFname());
-            preparedStatement.setString(3, user.getLname());
-            preparedStatement.setString(4, user.getEmail());
-            preparedStatement.setString(5, user.getTime());
-            preparedStatement.setString(6, user.getGuest());
-            preparedStatement.setString(7, user.getDate());
-            preparedStatement.executeUpdate();
-
-        } catch (SQLException e) {
-            System.err.println("A SQLException was caught: " + e.getMessage());
-        }
-    }
     
-    public List<CalebBean> getAllReservation(){
-        List<CalebBean> users = new ArrayList<CalebBean>();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from reservation");
-            while (rs.next()) {
-                CalebBean user = new CalebBean();
-                user.setFname(rs.getString("firstname"));
-                user.setLname(rs.getString("lastname"));
-                user.setPhone(rs.getString("phone"));
-                user.setEmail(rs.getString("email"));
-                user.setDate(rs.getString("date"));
-                user.setTime(rs.getString("time"));
-                user.setGuest(rs.getString("guest"));                
-                users.add(user);
-            }
-        } catch (SQLException e) {
-        System.err.println("A SQLException was caught: " + e.getMessage());
-        }
-
-        return users;
-    }
      
     
 }

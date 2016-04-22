@@ -6,11 +6,15 @@
 package DataAccessObject;
 
 import Bean.CartItemBean;
+import Bean.TogoBean;
 import DbConnect.DatabaseConnection;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -67,5 +71,60 @@ public class togoDAO {
             e.printStackTrace();
         }
     }
+    public void updateTempCook(String orderid) {
+        try { 
+            PreparedStatement preparedStatement = connection.prepareStatement("update togotemp set cooked='true'" +
+                            "where orderid=?");          
+            preparedStatement.setString(1, orderid);
+            preparedStatement.executeUpdate();
+                
+        } catch (SQLException e) {
+           System.err.println("A SQLException was caught: " + e.getMessage());
+        }
+    }
+    
+    public void updateTempCollect(String orderid) {
+        try { 
+            PreparedStatement preparedStatement = connection.prepareStatement("update togotemp set collected='true'" +
+                            "where orderid=?");          
+            preparedStatement.setString(1, orderid);
+            preparedStatement.executeUpdate();
+                
+        } catch (SQLException e) {
+           System.err.println("A SQLException was caught: " + e.getMessage());
+        }
+    }
+    public void deleteTemp(String orderid) {
+        try { 
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from togotemp where orderid=?");          
+            preparedStatement.setString(1, orderid);
+            preparedStatement.executeUpdate();
+                
+        } catch (SQLException e) {
+           System.err.println("A SQLException was caught: " + e.getMessage());
+        }
+    }
+   
+    public List<TogoBean> getAllOrders(){
+        List<TogoBean> togo = new ArrayList<TogoBean>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select * from togotemp");
+            while (rs.next()) {
+                TogoBean pickup = new TogoBean();
+                pickup.setOrderid(rs.getString("orderid"));
+                pickup.setCname(rs.getString("cname"));
+                pickup.setPhone(rs.getString("phone"));
+                pickup.setOrderTime(rs.getString("ordertime"));
+                pickup.setOrderContent(rs.getString("orderedm"));
+                pickup.setCooked(rs.getString("cooked"));
+                pickup.setCollected(rs.getString("collected"));
+                togo.add(pickup);
+            }
+        } catch (SQLException e) {
+        System.err.println("A SQLException was caught: " + e.getMessage());
+        }
 
+        return togo;
+    }
 }

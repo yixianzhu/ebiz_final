@@ -5,7 +5,7 @@
  */
 package Servlet;
 
-import DataAccessObject.Dao;
+import DataAccessObject.ReservationDao;
 import Bean.CalebBean;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,37 +22,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "Reservation", urlPatterns = {"/Reservation"})
 public class Reservation extends HttpServlet {
-    private Dao dao;
+    private ReservationDao dao;
 
     public Reservation() {
         super();
-        dao = new Dao();
-    }
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-   /* protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-    /*        out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Reservation</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Reservation at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }  */
+        dao = new ReservationDao();
+    }   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -74,6 +49,12 @@ public class Reservation extends HttpServlet {
             forward = "manageReservation.jsp";
             request.setAttribute("users", dao.getAllReservation());
         } 
+        else if (action.equalsIgnoreCase("delete")){
+            forward = "manageReservation.jsp";
+            String phone=request.getParameter("userid");
+            dao.deleteReservation(phone);
+            request.setAttribute("users", dao.getAllReservation());
+        } 
         RequestDispatcher view = request.getRequestDispatcher(forward);
         view.forward(request, response);
     }
@@ -88,16 +69,9 @@ public class Reservation extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-     //   processRequest(request, response);
-     response.setContentType("text/html;charset=UTF-8");
-     //   MealBean meal=new MealBean();
-        CalebBean user=new CalebBean();
-      //  user.setUserid(WalkinLogin.userid);
-      //  user.setTableid(WalkinLogin.tableid);
-     //   meal.setId(request.getParameter("mealid"));
-     //   String quantity=request.getParameter("quantity");
-     //   user.setQuantity(Integer.parseInt(quantity));
+            throws ServletException, IOException {     
+     response.setContentType("text/html;charset=UTF-8");     
+        CalebBean user=new CalebBean();      
         user.setFname(request.getParameter("fname"));
         user.setLname(request.getParameter("lname"));
         user.setPhone(request.getParameter("phone"));

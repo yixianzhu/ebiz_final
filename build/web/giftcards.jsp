@@ -57,9 +57,9 @@
       </div>
     </nav>
 
-    <br>
-    <br>
-    <br>
+    <br/>
+    <br/>
+    <br/>
     <!--    card samples        card samples        card samples    -->
     <div class="container">
     <div class="row">

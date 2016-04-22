@@ -17,7 +17,7 @@
         <style type="text/css">
 table, td, th
 {
-border:1px solid green;
+border:1px solid red;
 font-family: 'Oxygen', sans-serif;
 }
 th
@@ -35,7 +35,7 @@ body
 	margin-right: auto;
 	width: 40em;
 }
-h4
+h2
 {
 	font-family: 'Oxygen', sans-serif;
 	color:#1E90FF;
@@ -49,20 +49,44 @@ img{
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-    $("#tablediv").hide();
-  //  $("#tablediv2").hide();
-   showMenu();
+    var notify='notify';
+    console.log(notify);
+    showNotification();
+           //      $.get('ReservationNotification',{notification:notify},function(responseText) { 
+                 //   $.get('ReservationNotification',function(responseText) { 
+                //        $('#notification').text(responseText);         
+                //    });
+
+   // $("#tablediv").hide();
+    $("#tablediv2").hide();
+    $("#tablediv3").hide();
+   // showMenu();
+    refreshTable();
     $("#showTable").click(function(event){
     $("#tablediv2").hide();
+    $("#tablediv3").hide();
     refreshTable();
     $("#tablediv").show();
     });
+    $("#showTogo").click(function(event){
+    $("#tablediv").hide();
+    $("#tablediv2").hide();
+    showTogo();
+    $("#tablediv3").show();
+    });
     $("#menu").click(function(event){
     $("#tablediv").hide();
+    $("#tablediv3").hide();
     showMenu();
     $("#tablediv2").show();
     });
     });
+    function showNotification(){
+         $.get('ReservationNotification',function(responseText) { 
+             setTimeout(showNotification, 2000);
+                        $('#notification').text(responseText);         
+                    });
+    }
 
     function refreshTable(){
         
@@ -101,6 +125,39 @@ $(document).ready(function() {
                 }
             });
 }
+function showTogo(){
+        
+	// $("#tablediv").hide();
+   //  $("#showTable").click(function(event){
+           $.get('TogoOrder',function(responseJson) {
+               setTimeout(showTogo, 2000);
+        	   if(responseJson!=null){
+                   
+            	   $("#togo").find("tr:gt(0)").remove(); //remove all rows except the first
+            	   var pick = $("#togo");
+             //     $("#mealtable2").find("tr:gt(0)").remove(); //remove all rows except the first
+            //	  var table2 = $("#mealtable2");
+	               $.each(responseJson, function(key,value) { 
+                           //    if(value['status']=='Not served'){
+	               	       var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><a href=\"TogoController?action=cook&orderid="+value['orderid']+"\">Finish</a></td><td></td><td><a href=\"TogoController?action=collect&orderid="+value['orderid']+"\">Finish</a></td><td><a href=\"TogoController?action=delete&orderid="+value['orderid']+"\">Delete</a></td></tr>");
+                               rowNew.children().eq(0).text(value['orderid']); 
+	                       rowNew.children().eq(1).text(value['cname']); 
+	                       rowNew.children().eq(2).text(value['phone']); 
+                               rowNew.children().eq(3).text(value['orderTime']);
+	                       rowNew.children().eq(4).text(value['orderContent']); 
+                               if (value['cooked']=='false'){
+                               rowNew.children().eq(5).text('No'); }
+                               else if (value['cooked']=='true'){
+                               rowNew.children().eq(5).text('Yes'); }
+                               if (value['collected']=='false'){
+                               rowNew.children().eq(7).text('No'); }
+                               else if (value['collected']=='true'){
+                               rowNew.children().eq(7).text('Yes'); }                         
+                              rowNew.appendTo(pick); 
+	               });
+                }
+            });
+}
     function showMenu(){
         
 	// $("#tablediv").hide();
@@ -111,8 +168,7 @@ $(document).ready(function() {
             	   $("#mealmenu").find("tr:gt(0)").remove(); //remove all rows except the first
             	   var table1 = $("#mealmenu");
 	               $.each(responseJson, function(key,value) {
-                              console.log(value['image']);
-	               //     var rowNew = $("<tr><td></td><td></td><td></td><td></td><td><a href=\"http://www.google.com\">Delete"+value['id']+ "</a></td></tr>");
+                              console.log(value['image']);	              
                        var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td><img src=\""+value['image']+"\"/></td><td><a href=\"Controller?action=edit&mealId="+value['id']+"\">update</a></td><td><a href=\"Controller?action=delete&mealId="+value['id']+"\">delete</a></td></tr>");
                        
 	                       rowNew.children().eq(0).text(value['id']); 
@@ -130,9 +186,7 @@ $(document).ready(function() {
             });
           //   $("#tablediv").show();      
           //  });
-               
-	      
-}
+ }
 </script>
     </head>
     <body>
@@ -144,9 +198,9 @@ $(document).ready(function() {
            <ul class="nav navbar-nav">
              <li class="active"><a href="#">Home</a></li>
              <li id="showTable"><a href="#">Table Order</a></li>
-             <li id="showTable"><a href="#">Pick-up Order</a></li>
+             <li id="showTogo"><a href="#">Pick-up Order</a></li>
              <li id="menu"><a href="#">Manage the menu</a></li>
-             <li id="showTable"><a href="Reservation?action=see">Reservation</a></li>
+             <li id="showReservation"><a href="Reservation?action=see">Reservation<span id="notification" class="badge"></span></a></li>
              <li><a href="#">Manage staff</a></li>
              <li><a href="#">View trend</a></li>
            </ul>
@@ -159,23 +213,7 @@ $(document).ready(function() {
 <br/>
 <br/>
 
-<div id="tablediv2">
-<table cellspacing="5" id="mealmenu"> 
-    <tr>         
-        <th scope="col">Meal ID</th> 
-        <th scope="col">Name</th> 
-        <th scope="col">Category</th>  
-        <th scope="col">Description</th> 
-        <th scope="col">Price</th> 
-         <th scope="col">Image</th> 
-        <th scope="col" colspan="2">Action</th>         
-    </tr> 
-</table>
-    <br/> <br/>
-    <div>
-    <button onclick="location.href='Controller?action=insert'" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add and item</button>
-    </div>
-</div>
+
 
 <div id="tablediv">
 <div class="row">
@@ -226,6 +264,42 @@ $(document).ready(function() {
 </form>
 </div> 
 </div>
+</div>
+
+<div id="tablediv2">
+<table cellspacing="5" id="mealmenu"> 
+    <tr>         
+        <th scope="col">Meal ID</th> 
+        <th scope="col">Name</th> 
+        <th scope="col">Category</th>  
+        <th scope="col">Description</th> 
+        <th scope="col">Price</th> 
+         <th scope="col">Image</th> 
+        <th scope="col" colspan="2">Action</th>         
+    </tr> 
+</table>
+    <br/> <br/>
+    <div>
+    <button onclick="location.href='Controller?action=insert'" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add and item</button>
+    </div>
+</div>
+<div id="tablediv3">
+<table cellspacing="5" id="togo"> 
+    <tr>         
+        <th scope="col">Order ID</th> 
+        <th scope="col">Customer Name</th> 
+        <th scope="col">Phone</th>  
+        <th scope="col">Order Time</th> 
+        <th scope="col">Order content</th> 
+        <th scope="col" colspan="2">Cooked</th> 
+        <th scope="col" colspan="2">Taken-away</th>
+        <th scope="col">Action</th> 
+    <!--    <th scope="col">Take-away</th> 
+        <th scope="col" colspan="2">Action</th>   -->          
+    </tr> 
+</table>
+    <br/> <br/>
+    
 </div>
     </body>
 </html>
