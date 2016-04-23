@@ -21,8 +21,8 @@
   <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <script src="validateinput.js"></script>
-  <script src="jquery.js" type="text/javascript"></script>
+  <script src="js/validateinput.js"></script>
+  <script src="js/jquery.js" type="text/javascript"></script>
 
 </head>
 
@@ -39,7 +39,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="home.html">HOME</a></li>
+        <li><a href="home.jsp">HOME</a></li>
         <li><a href="Controller?action=togomenu">ORDER ONLINE</a></li>
         <li><a href="giftcards.jsp">GIFT CARDS</a></li>
         <li><a href="contact.jsp">CONTACT</a></li>
@@ -93,9 +93,7 @@
         <td colspan="4">Tip:</td>
         <td colspan="2">
             $<input type='text' name="tip" value='<c:out value="${cartItem.tip}"/>'  size='2' >
-            <input type="submit" name="action" value="set tip"/>
-            <!--<input type="submit" name="addTip" value="Add"/>-->
-<!--            <button onclick="getElementById('totalcost').innerHTML=<c:out value="${cart.totalCost}+parseInt(getElementById('tips').value)"/>">Add</button>-->
+            <input type="submit" name="action" value="set tip"/>            
         </td>  
         </form>
       </tr>
@@ -209,28 +207,28 @@
         <div class="form-group">
           <label for="inputDateTime" class="col-sm-4 control-label">Pick your time</label>
           <div class="col-sm-8">
-              <input type="dateTime" class="form-control" id="inputDateTime" />
+              <input type="dateTime" placeholder="mm/dd-hh:mm/AM" class="form-control" id="inputDateTime" onkeyup="checkTogoDate(); return false;" required/><span class="status8"></span>  
           </div>        
         </div>
 
         <div class="form-group">
           <label for="inputPhoneNumber" class="col-sm-4 control-label">
-            <span data-toggle="tooltip" data-placement="bottom" title="Click to see why we need phone number">
-              <button type="button" class="btn btn-link" data-toggle="collapse tooltip" data-target="#phoneexplain" style="color:#6B6B6B; text-decoration: underline; font-size:110%">Phone number</button>
-            </span>
+            <a data-toggle="collapse" href="#phoneexplain">
+              <span data-toggle="tooltip" title="Click to see why we need phone number" style="text-decoration: underline;">Phone number<span>
+            </a>
           </label>
           <div class="col-sm-8">
             <input type="phoneNumber" class="form-control" id="inputPhoneNumber" name="inputPhoneNumber" onkeyup="checkPhoneNumber(); return false;" required/><span class="status9"></span>
           </div>
           <div id="phoneexplain" class="collapse">
-    <p>*We’ll only use this information to send your order confirmation.<br/>Phone number is also used to:
-          <ul>
-            <li>Record your dining history</li>
-            <li>Offer you special promotion if eligible</li>
-            <li>Send you promotion news or account info through message</li>
-            <li>More information please consult our manager</li>
-          </ul></p>
-  </div>
+            <p>*We’ll only use this information to send your order confirmation.<br/>Phone number is also used to:
+            <ul>
+              <li>Record your dining history</li>
+              <li>Offer you special promotion if eligible</li>
+              <li>Send you promotion news or account info through message</li>
+              <li>More information please consult our manager</li>
+            </ul></p>
+          </div>
         </div>
 
         <div class="form-group">

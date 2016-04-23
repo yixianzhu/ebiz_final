@@ -11,6 +11,7 @@ package Servlet;
  */
 import DataAccessObject.Dao;
 import Bean.MealBean;
+import Bean.CalebBean;
 import java.io.File;
 import java.io.PrintWriter;
 import java.io.IOException;
@@ -65,7 +66,10 @@ public class Controller extends HttpServlet{
         } 
         else if (action.equalsIgnoreCase("walkinmenu")){
             forward = WALKINMENU;
+            CalebBean cb=new CalebBean();
+             cb= dao.getUserbean();
             request.setAttribute("meals", dao.getAllMeal());
+            request.setAttribute("cb",cb);
         }else if (action.equalsIgnoreCase("togomenu")){
             forward = TOGOMENU;
             request.setAttribute("meals", dao.getAllMeal());
@@ -101,9 +105,11 @@ public class Controller extends HttpServlet{
               if (!item.isFormField()) {
                   String fileName = item.getName();
                   String root = getServletContext().getRealPath("/");
+                  String work= root.substring(0,root.indexOf("build"));
          //     String root =  "/nbproject";
                   System.out.println("hi");
-                  File path = new File(root + "/images");
+            //      File path = new File(root + "/images");
+            File path = new File(work + "/web/images");
                   if (!path.exists()) {
                       boolean status = path.mkdirs();
                   }

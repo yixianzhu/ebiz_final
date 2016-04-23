@@ -20,7 +20,7 @@
         <link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet' type='text/css'>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script src="validateinput.js"></script>
+        <script src="js/validateinput.js"></script>
         <script>
         function deliveryMethod1() {
           document.getElementById("receiverEmail").style.visibility = "visible";
@@ -46,7 +46,7 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="home.html">HOME</a></li>
+            <li><a href="home.jsp">HOME</a></li>
             <li><a href="Controller?action=menu">MENU</a></li>
             <li><a href="Controller?action=togomenu">ORDER ONLINE</a></li>
             <li><a href="giftcards.jsp">GIFT CARDS</a></li>
@@ -57,9 +57,9 @@
       </div>
     </nav>
 
-    <br>
-    <br>
-    <br>
+    <br/>
+    <br/>
+    <br/>
     <!--    card samples        card samples        card samples    -->
     <div class="container">
     <div class="row">
@@ -79,15 +79,12 @@
           <div class="item active">
             <img src="Pic/giftcard1.jpeg" alt="giftcard1">
           </div>
-
           <div class="item">
             <img src="Pic/giftcard2.jpeg" alt="giftcard2">
           </div>
-
           <div class="item">
             <img src="Pic/giftcard3.jpeg" alt="giftcard3">
           </div>
-
           <div class="item">
             <img src="Pic/giftcard4.jpeg" alt="giftcard4">
           </div>

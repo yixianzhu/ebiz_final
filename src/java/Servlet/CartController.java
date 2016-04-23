@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import Bean.CalebBean;
 import DataAccessObject.togoDAO;
 import DataAccessObject.emailDAO;
 import Bean.CartBean;
@@ -15,6 +16,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -64,8 +66,12 @@ public class CartController extends HttpServlet {
                 deleteCart(request);
                 response.sendRedirect("togo_order.jsp");
             }else if(cartAction.equals("togocheckout")){
-                togocheckout(request);
-                response.sendRedirect("togo_order.jsp");
+                CalebBean user=new CalebBean();
+                user=togocheckout(request);
+                request.setAttribute("user", user);
+                String f="/togoreceipt.jsp";
+                RequestDispatcher rd = getServletContext().getRequestDispatcher(f);
+                rd.forward(request, response);
             }else if(cartAction.equals("set tip")){
                 settip(request);
                 response.sendRedirect("togo_order.jsp");
@@ -129,8 +135,9 @@ public class CartController extends HttpServlet {
         cartBean.updateCartItem(strItemNo, strQuantity);
     }
     
-    protected void togocheckout(HttpServletRequest request) {
+    protected CalebBean togocheckout(HttpServletRequest request) {
         System.out.println("call togo checkout function");
+        CalebBean c=new CalebBean();
         HttpSession session = request.getSession();
         String strPhoneNumber = request.getParameter("inputPhoneNumber");
         String strEmail = request.getParameter("inputEmail");
@@ -156,8 +163,10 @@ public class CartController extends HttpServlet {
             }
             Double tips = cartBean.getTips();
             Double charge = tips+cartBean.getTotalCost();
+            c.setCost(charge);
             togoDao.insertorder(orderid, strPhoneNumber, cartBean.getTotalCost(), tips, charge);
             togoDao.tellmanager(orderid, strPhoneNumber, customername, orderedmeals);
+          
         }
         CartBean cartBean = new CartBean();
         request.setAttribute("cart", cartBean);
@@ -167,6 +176,7 @@ public class CartController extends HttpServlet {
             emailDao.togoEmail(strEmail, customername);
         }
         System.out.println("successfully ckeckout");
+    return c;
     }
     
     private void settip(HttpServletRequest request) {
