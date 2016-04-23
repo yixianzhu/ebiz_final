@@ -1,0 +1,131 @@
+.navbar {
+    margin-bottom: 0;
+    background-color: #8094bc;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    border-radius: 0;
+    font-family: Montserrat, sans-serif;
+}
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #8094bc !important;
+    background-color: #fff !important;
+}
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #8094bc;
+}
+
+.rese {
+    margin:0px;padding:0px;
+    width:100%;
+    box-shadow: 10px 10px 5px #888888;
+    border:1px solid #000000;
+    
+    -moz-border-radius-bottomleft:6px;
+    -webkit-border-bottom-left-radius:6px;
+    border-bottom-left-radius:6px;
+    
+    -moz-border-radius-bottomright:6px;
+    -webkit-border-bottom-right-radius:6px;
+    border-bottom-right-radius:6px;
+    
+    -moz-border-radius-topright:6px;
+    -webkit-border-top-right-radius:6px;
+    border-top-right-radius:6px;
+    
+    -moz-border-radius-topleft:6px;
+    -webkit-border-top-left-radius:6px;
+    border-top-left-radius:6px;
+}.rese table{
+    border-collapse: collapse;
+        border-spacing: 0;
+    width:100%;
+    height:100%;
+    margin:0px;padding:0px;
+}.rese tr:last-child td:last-child {
+    -moz-border-radius-bottomright:6px;
+    -webkit-border-bottom-right-radius:6px;
+    border-bottom-right-radius:6px;
+}
+.rese table tr:first-child td:first-child {
+    -moz-border-radius-topleft:6px;
+    -webkit-border-top-left-radius:6px;
+    border-top-left-radius:6px;
+}
+.rese table tr:first-child td:last-child {
+    -moz-border-radius-topright:6px;
+    -webkit-border-top-right-radius:6px;
+    border-top-right-radius:6px;
+}.rese tr:last-child td:first-child{
+    -moz-border-radius-bottomleft:6px;
+    -webkit-border-bottom-left-radius:6px;
+    border-bottom-left-radius:6px;
+}.rese tr:hover td{
+    background-color:#d3e2ff;
+        
+
+}
+.rese td{
+    vertical-align:middle;
+        background:-o-linear-gradient(bottom, #ffffff 5%, #d3e2ff 100%);    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #d3e2ff) ); 
+    background:-moz-linear-gradient( center top, #ffffff 5%, #d3e2ff 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffffff", endColorstr="#d3e2ff");  background: -o-linear-gradient(top,#ffffff,d3e2ff);
+
+    background-color:#ffffff;
+
+    border:1px solid #000000;
+    border-width:0px 1px 1px 0px;
+    text-align:left;
+    padding:9px;
+    font-size:14px;
+    font-family:Arial;
+    font-weight:normal;
+    color:#000000;
+}.rese tr:last-child td{
+    border-width:0px 1px 0px 0px;
+}.rese tr td:last-child{
+    border-width:0px 0px 1px 0px;
+}.rese tr:last-child td:last-child{
+    border-width:0px 0px 0px 0px;
+}
+.rese tr:first-child td{
+        background:-o-linear-gradient(bottom, #8094bc 5%, #586f9e 100%);    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #8094bc), color-stop(1, #586f9e) );
+    background:-moz-linear-gradient( center top, #8094bc 5%, #586f9e 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#8094bc", endColorstr="#586f9e");  background: -o-linear-gradient(top,#8094bc,586f9e);
+
+    background-color:#8094bc;
+    border:0px solid #000000;
+    text-align:center;
+    border-width:0px 0px 1px 1px;
+    font-size:14px;
+    font-family:Arial;
+    font-weight:bold;
+    color:#ffffff;
+}
+.rese tr:first-child:hover td{
+    background:-o-linear-gradient(bottom, #8094bc 5%, #586f9e 100%);    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #8094bc), color-stop(1, #586f9e) );
+    background:-moz-linear-gradient( center top, #8094bc 5%, #586f9e 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#8094bc", endColorstr="#586f9e");  background: -o-linear-gradient(top,#8094bc,586f9e);
+
+    background-color:#8094bc;
+}
+.rese tr:first-child td:first-child{
+    border-width:0px 0px 1px 0px;
+}
+.rese tr:first-child td:last-child{
+    border-width:0px 0px 1px 1px;
+}
+
+td{
+    text-align="right";
+}
