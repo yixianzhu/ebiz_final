@@ -75,20 +75,14 @@
       <img class="img-responsive" src="${meal.image}" alt="${meal.name}">
       <p class="floating-left">${meal.name}</p>       
       <p class="floating-right">Price: ${meal.price}</p>
-   <!--   <form class="floating-right2" id='myform' method='POST' action='AddToCart'>
+      <form class="floating-right2" id='myform' action='AddToCart'>
           
           <input type='button' value='-' class='qtyminus' field='${meal.id}' />
           <input type='text' name='${meal.id}' value='0' class='qty' />
+          <input type='hidden' name='mealid' value='${meal.id}' class='mealid' id="meal" />
           <input type='button' value='+' class='qtyplus' field='${meal.id}' />
-          <input type='hidden' name='mealid' value='${meal.id}' class='mealid' id="meal" />
-          <button type="submit" id="addToCart">addToMyCart</button>
-      </form>  -->
-   <form class="floating-right2" id='myform' action='AddToCart'>
-          <input type='button' value='-' class='qtyminus' field='quantity' />
-          <input type='text' name='quantity' value='0' class='qty' />
-          <input type='hidden' name='mealid' value='${meal.id}' class='mealid' id="meal" />
-          <input type='button' value='+' class='qtyplus' field='quantity' />
-          <button type="submit" id="addToCart">addToMyCart</button>
+          <input type="hidden" name="action" value="add"/>
+          <input type="submit" name="addToCart" value="Add To Cart"/>
       </form>
       <p class="after-box">${meal.description}</p>
       
@@ -104,19 +98,13 @@
       <img class="img-responsive" src="${meal.image}" alt="${meal.name}">
       <p class="floating-left">${meal.name}</p>       
       <p class="floating-right">Price: ${meal.price}</p>
-   <!--   <form class="floating-right2" id='myform' method='POST' action='AddToCart'>
-          <input type='button' value='quantity-' class='qtyminus' field='${meal.id}' />
+     <form class="floating-right2" id='myform' method='POST' action='AddToCart'>
+          <input type='button' value='-' class='qtyminus' field='${meal.id}' />
           <input type='text' name='${meal.id}' value='0' class='qty' />
           <input type='button' value='+' class='qtyplus' field='${meal.id}' />
           <input type='hidden' name='mealid' value='${meal.id}' class='mealid' id="meal" />
-          <button type="submit" id="addToCart">addToMyCart</button>
-      </form>  -->
-     <form class="floating-right2" id='myform' method='POST' action='AddToCart'>
-          <input type='button' value='-' class='qtyminus' field='quantity' />
-          <input type='text' name='quantity' value='0' class='qty' />
-          <input type='button' value='+' class='qtyplus' field='quantity' />
-          <input type='hidden' name='mealid' value='${meal.id}' class='mealid' id="meal" />
-          <button type="button" id="addToCart">addToMyCart</button>
+          <input type="hidden" name="action" value="add"/>
+          <input type="submit" name="addToCart" value="Add To Cart"/>
       </form>
       <p class="after-box">${meal.description}</p>      
     </div>
@@ -137,7 +125,7 @@
           <input type='text' name='${meal.id}' value='0' class='qty' />
           <input type='button' value='+' class='qtyplus' field='${meal.id}' />
           <input type='hidden' name='mealid' value='${meal.id}' class='mealid' id="meal" />
-          <button type="submit" id="addToCart">addToMyCart</button>
+          <input type="submit" name="addToCart" value="Add To Cart"/>
       </form>
       <p class="after-box">${meal.description}</p>      
     </div>

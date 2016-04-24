@@ -41,17 +41,33 @@ public class AddToCart extends HttpServlet{
         user.setUserid(WalkinLogin.userid);
         user.setTableid(WalkinLogin.tableid);
         meal.setId(request.getParameter("mealid"));
-        String quantity=request.getParameter("quantity");
+        String mealid=request.getParameter("mealid");
+    //    String quantity=request.getParameter("quantity");
+        String quantity=request.getParameter(mealid);
         user.setQuantity(Integer.parseInt(quantity));
+        String cartAction = request.getParameter("action");
+
+        if(cartAction == null && cartAction.equals("")){
+            // System.out.println("The action is null");
+        }else{
+            // System.out.println("The action is not null");
+            if(cartAction.equals("add")){
+                System.out.println("add an item!");
+             //   addToCart(request);
+            //    response.sendRedirect("Controller?action=togomenu");
+        
      //   String mealid=request.getParameter("mealid");
      //   meal.setId(mealid);
      //   String quantity=request.getParameter(mealid);
      //   user.setQuantity(Integer.parseInt(quantity));
         dao.addTableCart(meal,user);
-        String f= null;
-        f="/Controller?action=walkinmenu";
-        RequestDispatcher rd = getServletContext().getRequestDispatcher(f);
-        rd.forward(request, response);
+        response.sendRedirect("Controller?action=walkinmenu");
+     //   String f= null;
+      //  f="/Controller?action=walkinmenu";
+     //   RequestDispatcher rd = getServletContext().getRequestDispatcher(f);
+    //    rd.forward(request, response);
+            }
+        }
     //    RequestDispatcher view = request.getRequestDispatcher("/Controller?action=menu");
       //  request.setAttribute("meals", dao.getMyCart());
     //    view.forward(request, response);
