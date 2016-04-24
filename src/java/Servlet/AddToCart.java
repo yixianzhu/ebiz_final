@@ -40,11 +40,13 @@ public class AddToCart extends HttpServlet{
         CalebBean user=new CalebBean();
         user.setUserid(WalkinLogin.userid);
         user.setTableid(WalkinLogin.tableid);
+        System.out.println(WalkinLogin.tableid);
         meal.setId(request.getParameter("mealid"));
         String mealid=request.getParameter("mealid");
     //    String quantity=request.getParameter("quantity");
         String quantity=request.getParameter(mealid);
         user.setQuantity(Integer.parseInt(quantity));
+
         String cartAction = request.getParameter("action");
 
         if(cartAction == null && cartAction.equals("")){
@@ -56,6 +58,9 @@ public class AddToCart extends HttpServlet{
              //   addToCart(request);
             //    response.sendRedirect("Controller?action=togomenu");
         
+
+        System.out.println(Integer.parseInt(quantity));
+
      //   String mealid=request.getParameter("mealid");
      //   meal.setId(mealid);
      //   String quantity=request.getParameter(mealid);

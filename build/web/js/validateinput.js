@@ -80,6 +80,19 @@ function checkEmail() {
     }        
 }
 
+function checkTogoDate() {
+    var inputDateTime = $("#inputDateTime").val();
+    // if (inputDateTime.length < 10) {
+    if (/^([0-9]{2})\/([0-9]{2})\-([0-9]{2})\:([0-9]{2})\/(AM|PM|am|pm)$/.test(inputDateTime)) {
+        $(".status8").html("");
+    } else {
+        $(".status8").html("Invalid time. Please follow: mm/dd-hh:mm/AM");
+    }
+    // }else{
+    //     $(".status8").html("Invalid date");
+    // }       
+}
+
 function checkPhoneNumber() {
     var inputPhoneNumber = $("#inputPhoneNumber").val();
     if (inputPhoneNumber.length == 10) {
@@ -148,3 +161,60 @@ function checkReceiverEmail() {
     }        
 }
 
+function checkrFirstName() {
+    var inputFirstName = $("#inputFirstName").val();
+    if (!/[^a-zA-Z]/.test(inputFirstName)) {
+        $(".status14").html("");
+    } else {
+        $(".status14").html("First name should only contain letters");
+    }
+}
+
+
+function checkrLastName() {
+    var inputLastName = $("#inputLastName").val();
+    if (!/[^a-zA-Z]/.test(inputLastName)) {
+        $(".status15").html("");
+    } else {
+        $(".status15").html("Last name should only contain letters");
+    }
+}
+
+function checkrPhoneNumber() {
+    var inputrPhoneNumber = $("#inputrPhoneNumber").val();
+    if (inputrPhoneNumber.length == 10) {
+        if (!/[^0-9]/.test(inputrPhoneNumber)) {
+            $(".status16").html("");
+        } else {
+            $(".status16").html("Invalid phone number");
+        }
+    }else{
+        $(".status16").html("Phone number code should be 10-digit");
+    }
+}
+
+function checkrEmail() {
+    var inputrEmail = $("#inputrEmail").val();
+    if (inputrEmail.length <= 50) {
+        if (/^[-a-z0-9~!$%^&*_=+}{\'?]+(\.[-a-z0-9~!$%^&*_=+}{\'?]+)*@([a-z0-9_][-a-z0-9_]*(\.[-a-z0-9_]+)*\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}))(:[0-9]{1,5})?$/i.test(inputrEmail)) {
+            $(".status17").html("");
+        } else {
+            $(".status17").html("Invalid email address");
+        }
+    }else{
+        $(".status17").html("Invalid email address");
+    }       
+}
+
+function checkrDate() {
+    var inputrDate = $("#inputrDate").val();
+    if (inputrDate.length < 10) {
+        if (/^([0-9]{2})\/([0-9]{2})$/.test(inputrDate)) {
+            $(".status18").html("");
+        } else {
+            $(".status18").html("Invalid date");
+        }
+    }else{
+        $(".status18").html("Invalid date. Please follow: mm/dd");
+    }       
+}

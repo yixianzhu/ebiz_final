@@ -79,15 +79,12 @@
           <div class="item active">
             <img src="Pic/giftcard1.jpeg" alt="giftcard1">
           </div>
-
           <div class="item">
             <img src="Pic/giftcard2.jpeg" alt="giftcard2">
           </div>
-
           <div class="item">
             <img src="Pic/giftcard3.jpeg" alt="giftcard3">
           </div>
-
           <div class="item">
             <img src="Pic/giftcard4.jpeg" alt="giftcard4">
           </div>

@@ -16,13 +16,18 @@
         <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>        
+        <script src="js/validateinput.js"></script>
         <style>
           h3 {
               text-align: center;
               color: #5E5E5E;
               margin-bottom: 7%;
           } 
+          .status14, .status15, .status16, .status17, .status18{
+            color:red;
+            font-size: 80%;
+          }
         </style>
     </head>
     <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -74,7 +79,7 @@
               We are located right next to the top station of the Duquesne Incline. 
               Thank you for choosing Seudo.
           </p>
-          <p>For group reservation inquiries, give us a call or email <a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">events@xxx.com</a>.</p>
+          <p>For group reservation inquiries, give us a call or email <a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">events@seudo.com</a>.</p>
         </div>
         <div class="col-sm-5">
 
@@ -83,35 +88,35 @@
         <div class="form-group"> 
           <label for="inputFirstName" class="col-sm-4 control-label">First Name</label>
           <div class="col-sm-8">
-            <input name="fname" type="text" class="form-control" id="inputFirstName" />
+            <input name="fname" type="text" class="form-control" id="inputFirstName" name="inputFirstName" onkeyup="checkrFirstName(); return false;" required/><span class="status14"></span>
           </div>
         </div>
 
         <div class="form-group">
           <label for="inputLastName" class="col-sm-4 control-label">Last Name</label>
           <div class="col-sm-8">
-            <input name="lname" type="text" class="form-control" id="inputLastName" />
+            <input name="lname" type="text" class="form-control" id="inputLastName" name="inputLastName" onkeyup="checkrLastName(); return false;" required/><span class="status15"></span>
           </div>
         </div>
 
         <div class="form-group">
           <label for="inputPhoneNumber" class="col-sm-4 control-label">Phone number</label>
           <div class="col-sm-8">
-            <input name="phone" type="text" class="form-control" id="inputPhoneNumber" />
+            <input name="phone" type="text" class="form-control" id="inputrPhoneNumber"  name="inputrPhoneNumber" onkeyup="checkrPhoneNumber(); return false;" required/><span class="status16"></span>
           </div>
         </div>
 
         <div class="form-group">
           <label for="inputEmail" class="col-sm-4 control-label">Email</label>
           <div class="col-sm-8">
-            <input name="email" type="text" class="form-control" id="inputEmail" />
+            <input name="email" type="text" class="form-control" id="inputrEmail" name="inputrEmail" onkeyup="checkrEmail(); return false;" required/><span class="status17"></span>          
           </div>
         </div>
         
         <div class="form-group">
           <label for="inputDate" class="col-sm-4 control-label">Date</label>
           <div class="col-sm-8">
-            <input name="date" type="date" class="form-control" id="inputDate" />
+            <input name="date" placeholder="mm/dd" type="date" class="form-control" id="inputrDate" name="inputrDate" onkeyup="checkrDate(); return false;" required/><span class="status18"></span>
           </div>
         </div>
         
@@ -119,13 +124,13 @@
           <label for="inputDateTime" class="col-sm-4 control-label">Pick your time</label>
           <div class="col-sm-8">
             <select name="time" class="form-control">
-              <option value="5 pm">5 pm</option>
+              <option value="5:00 pm">5:00 pm</option>
               <option value="5:30 pm">5:30 pm</option>
-              <option value="6 pm">6 pm</option>
+              <option value="6:00 pm">6:00 pm</option>
               <option value="6:30 pm">6:30 pm</option>
-              <option value="7 pm">7 pm</option>
+              <option value="7:00 pm">7:00 pm</option>
               <option value="7:30 pm">7:30 pm</option>
-              <option value="8 pm">8 pm</option>
+              <option value="8:00 pm">8:00 pm</option>
               <option value="8:30 pm">8:30 pm</option>
             </select>
           </div>        
@@ -144,13 +149,13 @@
           </div>        
         </div>
 
-   <!--     <div class="form-group">
+       <div class="form-group">
           <div class="col-sm-offset-2 col-sm-12">
-            <div class="checkbox">               
-              <label><input type="checkbox"/>Yes, I want to receive email messages from XXX.</label>
+            <div class="checkbox">  
+              <label><input type="checkbox" name="receiveEmail" value="yesplease"/>Yes, I want to receive email messages from Seudo.</label>
             </div>
           </div>
-        </div>  -->
+        </div> 
 
         <div class="form-group">
           <div class="col-sm-12 form-group">

@@ -56,13 +56,13 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MENU <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#starters">Starters<span class="badge">5</span></a></li>
-            <li><a href="#sandwiches">Sandwiches</a></li><!-- 记得改！！！！！！ -->
+            <li><a href="#sandwiches">Sandwiches</a></li>
             <li><a href="#entries">Entries</a></li>
             <li><a href="#dessert">Dessert</a></li>
             <li><a href="#drinks">Drinks</a></li>
           </ul>
         </li>
-        <li><a href="ShowTablecart?action=viewCart">MY ORDERS<span id="TotalOrder" class="badge"><jsp:getProperty name="cb" property="order" /></span></a></li><!-- 记得改！！！！！！ -->
+        <li><a href="ShowTablecart?action=viewCart">MY ORDERS<span id="TotalOrder" class="badge"><jsp:getProperty name="cb" property="order" /></span></a></li>
       </ul>
     </div>
   </div>
