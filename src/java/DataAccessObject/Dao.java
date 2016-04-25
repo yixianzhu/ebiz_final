@@ -88,7 +88,7 @@ public class Dao {
     
     public void updateTable(String tableid, String mealid) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("update tablecart set status='served'" +
+            PreparedStatement preparedStatement = connection.prepareStatement("update confirmedcart set status='served'" +
                             "where tableid=? and mealid=?");          
             preparedStatement.setString(1, tableid);
             preparedStatement.setString(2, mealid);
@@ -166,11 +166,37 @@ public class Dao {
            System.err.println("A SQLException was caught: " + e.getMessage());
         }
     }
+    public void confirmCart(){
+         try {
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("select * from tablecart where tablecart.phone='"+WalkinLogin.userid+"'");
+        while (rs.next()) {
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into confirmedcart(tableid,phone,mealid,quantity,status,subtotal) values (?, ?, ?, ?,?,?)");
+            preparedStatement.setString(1, rs.getString("tableid"));
+            preparedStatement.setString(2, rs.getString("phone"));
+            preparedStatement.setString(3, rs.getString("mealid"));
+            preparedStatement.setInt(4, rs.getInt("quantity"));  
+            preparedStatement.setString(5, rs.getString("status"));
+             preparedStatement.setDouble(6, rs.getDouble("subtotal"));
+            preparedStatement.executeUpdate();
+            }
+        } catch (SQLException e) {
+          System.err.println("A SQLException was caught: " + e.getMessage());
+        }
+         try {
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from tablecart where phone=?");           
+            preparedStatement.setString(1, WalkinLogin.userid);
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+           System.err.println("A SQLException was caught: " + e.getMessage());
+        }
+    }
      public List<MealBean> getAlltables() {
         List<MealBean> meals = new ArrayList<MealBean>();
         try {
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from tablecart,finalmeal where tablecart.mealid=finalmeal.id");
+            ResultSet rs = statement.executeQuery("select * from confirmedcart,finalmeal where confirmedcart.mealid=finalmeal.id");
             while (rs.next()) {
                 MealBean meal = new MealBean();
                 meal.setTableid(rs.getString("tableid"));

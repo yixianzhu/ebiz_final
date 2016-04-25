@@ -35,8 +35,8 @@ body
 }
 
 img{
-    height: 40%;
-      width: 40%;
+    height: 20%;
+      width: 20%;
       margin:0 auto;
 }
 </style>
@@ -86,6 +86,9 @@ img{
            
         </tbody>
     </table>  -->
+    <br/>
+    <a href="AddToCart?action=confirm">Confirm you order</a>
+    <br/>
     <br/>
     <a href="Controller?action=walkinmenu">Continue your shopping</a>
     <br/>

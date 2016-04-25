@@ -34,7 +34,7 @@ public class CheckoutDao {
         String date = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
         String orderid = date+WalkinLogin.userid.substring(5);
         Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("select mealid, quantity, subtotal from tablecart where tableid='"+tableid+"'");
+        ResultSet rs = statement.executeQuery("select mealid, quantity, subtotal from confirmedcart where tableid='"+tableid+"'");
         double total=0;
             while (rs.next()) {
                 total=total+rs.getDouble("subtotal");
@@ -78,7 +78,7 @@ public class CheckoutDao {
       public void deleteTable(String tableid) {
         try { 
             Statement statement = connection.createStatement();
-            statement.executeUpdate("delete from tablecart where tableid='"+tableid+"'");              
+            statement.executeUpdate("delete from confirmedcart where tableid='"+tableid+"'");              
 		} catch (SQLException e) {
 		System.err.println("A SQLException was caught: " + e.getMessage());
 		}

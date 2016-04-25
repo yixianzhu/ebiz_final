@@ -20,7 +20,8 @@
         <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>        
         <title>Seudo</title>
         <style type="text/css">
-/*table, td, th
+            
+table, td, th
 {
 border:1px solid red;
 font-family: 'Oxygen', sans-serif;
@@ -29,7 +30,7 @@ th
 {
 background-color:green;
 color:white;
-}*/
+}
 /*body
 {
 	text-align: center;
@@ -173,7 +174,7 @@ function showTogo(){
             	   $("#mealmenu").find("tr:gt(0)").remove(); //remove all rows except the first
             	   var table1 = $("#mealmenu");
 	               $.each(responseJson, function(key,value) {
-                              console.log(value['image']);	              
+                      //        console.log(value['image']);	              
                        var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td><img src=\""+value['image']+"\"/></td><td><a href=\"Controller?action=edit&mealId="+value['id']+"\">update</a></td><td><a href=\"Controller?action=delete&mealId="+value['id']+"\">delete</a></td></tr>");
                        
 	                       rowNew.children().eq(0).text(value['id']); 
@@ -212,8 +213,8 @@ function showTogo(){
         <li id="showTogo"><a href="#">Pick-up Order</a></li>
         <li id="menu"><a href="#">Manage Menus</a></li>
         <li id="showReservation"><a href="Reservation?action=see">Reservations<span id="notification" class="label label-warning">!</span></a></li>
-        <li><a href="#">Staff</a></li>
-        <li><a href="#">Business Analysis</a></li>
+        <li><a href="HistoryOrder?action=staff">Staff</a></li>
+        <li><a href="HistoryOrder?action=trend">Business Analysis</a></li>
       </ul>
     </div>
    </div>
@@ -240,7 +241,7 @@ function showTogo(){
               <input type="hidden" name="tableid" value="1" />
               <div class="form-group">
                 <label for="mealID">Employee ID:</label>
-                <input type="text" class="form-control" id="id" placeholder="Enter your ID" name="employeeid"/>
+                <input type="text" class="form-control" id="id" placeholder="Enter your ID" name="employeeid" size="4"/>
               </div>
           <input type="submit" name="Submit" value="Check out for table 1">
           </form>
@@ -264,7 +265,7 @@ function showTogo(){
             <input type="hidden" name="tableid" value="2" />
               <div class="form-group">
                 <label for="id">Employee ID:</label>
-                <input type="text" class="form-control" id="employeeid" placeholder="Enter your ID" name="employeeid"/>
+                <input type="text" class="form-control" id="employeeid" placeholder="Enter your ID" name="employeeid" size="4"/>
               </div>
             <input type="submit" name="Submit" value="Check out for table 2">
           </form>
@@ -322,5 +323,6 @@ function showTogo(){
         <div class="col-md-2"></div>
       </div><br/><br/>
     </div>
+  </div>
   </body>
 </html>

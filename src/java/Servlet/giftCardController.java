@@ -5,6 +5,7 @@
  */
 package Servlet;
 
+import Bean.SendEmail;
 import DataAccessObject.giftcardDAO;
 import DataAccessObject.emailDAO;
 import java.io.IOException;
@@ -51,9 +52,10 @@ public class giftCardController extends HttpServlet {
             if(giftcardAction.equals("purchaseGiftCard")){
                 System.out.println("purchase Gift Card starts!");
                 purchaseGiftCard(request);
-                response.sendRedirect("giftcards.jsp");
+           //     response.sendRedirect("giftcards.jsp");
+                response.sendRedirect("giftcardsConfirmation.jsp");
             }else{
-                response.sendRedirect("home.html");
+                response.sendRedirect("home.jsp");
             }
         }
     }
@@ -75,6 +77,11 @@ public class giftCardController extends HttpServlet {
         if(order_form.equals("email")){
             System.out.println("send the gift card to receiver");
             receiverEmail = request.getParameter("inputReceiverEmail");
+            SendEmail s=new SendEmail();
+         //    String receiver=request.getParameter("email");
+            String message=new String();
+            message="You rceived a giftcard in suedo restaurant from"+" "+request.getParameter("inputSenderName");
+            s.send(receiverEmail,message);
             System.out.println(receiverEmail);
             giftcardDao.recordPurchse(purchaseid, senderName, senderEmail, receiverName, receiverEmail, strAmount);
         }else if(order_form.equals("self")){

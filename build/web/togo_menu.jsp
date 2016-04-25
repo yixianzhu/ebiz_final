@@ -60,7 +60,7 @@
             <li><a href="#drinks">Drinks</a></li>
           </ul>
         </li>
-        <li><a href="togo_order.jsp">MY ORDERS<span id="TotalOrder" class="badge">0</span></a></li>
+        <li><a href="togo_order.jsp">MY ORDERS<!--<span id="TotalOrder" class="badge">0</span>--></a></li>
         <li><a href="giftcards.jsp">GIFT CARDS</a></li>
         <li><a href="reservations.jsp">RESERVATIONS</a></li>
         <li><a href="contact.jsp">CONTACT</a></li>

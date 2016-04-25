@@ -36,27 +36,42 @@ public class AddToCart extends HttpServlet{
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        MealBean meal=new MealBean();
+     /*   MealBean meal=new MealBean();
         CalebBean user=new CalebBean();
         user.setUserid(WalkinLogin.userid);
         user.setTableid(WalkinLogin.tableid);
         System.out.println(WalkinLogin.tableid);
         meal.setId(request.getParameter("mealid"));
-        String quantity=request.getParameter("quantity");
+        String mealid=request.getParameter("mealid");
+        String quantity=request.getParameter(mealid);
+        user.setQuantity(Integer.parseInt(quantity)); */
+        String cartAction = request.getParameter("action");
+        if(cartAction == null && cartAction.equals("")){
+            // System.out.println("The action is null");
+        }else{
+            // System.out.println("The action is not null");
+            if(cartAction.equals("add")){
+               MealBean meal=new MealBean();
+        CalebBean user=new CalebBean();
+        user.setUserid(WalkinLogin.userid);
+        user.setTableid(WalkinLogin.tableid);
+        System.out.println(WalkinLogin.tableid);
+        meal.setId(request.getParameter("mealid"));
+        String mealid=request.getParameter("mealid");
+        String quantity=request.getParameter(mealid);
         user.setQuantity(Integer.parseInt(quantity));
-        System.out.println(Integer.parseInt(quantity));
-     //   String mealid=request.getParameter("mealid");
-     //   meal.setId(mealid);
-     //   String quantity=request.getParameter(mealid);
-     //   user.setQuantity(Integer.parseInt(quantity));
-        dao.addTableCart(meal,user);
-        String f= null;
-        f="/Controller?action=walkinmenu";
-        RequestDispatcher rd = getServletContext().getRequestDispatcher(f);
-        rd.forward(request, response);
-    //    RequestDispatcher view = request.getRequestDispatcher("/Controller?action=menu");
-      //  request.setAttribute("meals", dao.getMyCart());
-    //    view.forward(request, response);
+               System.out.println("add an item!");       
+               dao.addTableCart(meal,user);
+               response.sendRedirect("Controller?action=walkinmenu");
+     
+            }
+            else if(cartAction.equals("confirm")){
+               System.out.println("confirm items!");       
+               dao.confirmCart();
+               response.sendRedirect("Controller?action=walkinmenu");
+     
+            }
+        }
     }
      // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -3,19 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/Users/zhuyixian/Desktop/coding/Ebiz/IS2730FinalProject/src/java/Servlet/CartController.java</file>
-            <file>file:/Users/zhuyixian/Desktop/coding/Ebiz/IS2730FinalProject/web/js/validateinput.js</file>
-            <file>file:/Users/zhuyixian/Desktop/coding/Ebiz/IS2730FinalProject/src/java/Servlet/giftCardController.java</file>
-            <file>file:/Users/zhuyixian/Desktop/coding/Ebiz/IS2730FinalProject/src/java/DataAccessObject/togoDAO.java</file>
-=======
-            <file>file:/C:/Users/xun%20yang/Desktop/ebizfinal/ebiz_final/src/java/Bean/MealBean.java</file>
-            <file>file:/C:/Users/xun%20yang/Desktop/ebizfinal/ebiz_final/src/java/Bean/CalebBean.java</file>
-            <file>file:/C:/Users/xun%20yang/Desktop/ebizfinal/ebiz_final/src/java/Bean/TogoBean.java</file>
-            <file>file:/C:/Users/xun%20yang/Desktop/ebizfinal/ebiz_final/src/java/DataAccessObject/togoDAO.java</file>
-            <file>file:/C:/Users/xun%20yang/Desktop/ebizfinal/ebiz_final/src/java/Servlet/TogoOrder.java</file>
-            <file>file:/C:/Users/xun%20yang/Desktop/ebizfinal/ebiz_final/web/manager.jsp</file>
->>>>>>> 0acfd33bd530a17dba98b305619fd5e4927c1c29
+            <file>file:/C:/Users/xun%20yang/Desktop/ebizsubmit/ebiz_final/web/index.html</file>
+            <file>file:/C:/Users/xun%20yang/Desktop/ebizsubmit/ebiz_final/web/manager.jsp</file>
+            <file>file:/C:/Users/xun%20yang/Desktop/ebizsubmit/ebiz_final/web/walkin.jsp</file>
+            <file>file:/C:/Users/xun%20yang/Desktop/ebizsubmit/ebiz_final/src/java/DataAccessObject/HistoryOrderDao.java</file>
+            <file>file:/C:/Users/xun%20yang/Desktop/ebizsubmit/ebiz_final/web/index.jsp</file>
+            <file>file:/C:/Users/xun%20yang/Desktop/ebizsubmit/ebiz_final/web/home.jsp</file>
+            <file>file:/C:/Users/xun%20yang/Desktop/ebizsubmit/ebiz_final/web/walkin_order.jsp</file>
         </group>
     </open-files>
 </project-private>

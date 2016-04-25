@@ -7,6 +7,7 @@ package Servlet;
 
 import DataAccessObject.ReservationDao;
 import Bean.CalebBean;
+import Bean.SendEmail;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -71,7 +72,16 @@ public class Reservation extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {     
      response.setContentType("text/html;charset=UTF-8");     
-        CalebBean user=new CalebBean();      
+        CalebBean user=new CalebBean(); 
+      //  String check=request.getParameter("receiveEmail");
+     //   if (check.equals("yesplease")){
+       //  System.out.println("send");
+         SendEmail s=new SendEmail();
+         String receiver=request.getParameter("email");
+         String message=new String();
+         message="Your have a reservation in seudo restaurant at"+" "+request.getParameter("time")+" "+"on"+" "+request.getParameter("date");
+         s.send(receiver,message);
+     //   }
         user.setFname(request.getParameter("fname"));
         user.setLname(request.getParameter("lname"));
         user.setPhone(request.getParameter("phone"));
@@ -81,7 +91,7 @@ public class Reservation extends HttpServlet {
         user.setDate(request.getParameter("date"));
         dao.addReservation(user);
         String f= null;
-        f="/home.jsp";
+        f="/ReservationConfirmation.jsp";
         RequestDispatcher rd = getServletContext().getRequestDispatcher(f);
         rd.forward(request, response);
     }

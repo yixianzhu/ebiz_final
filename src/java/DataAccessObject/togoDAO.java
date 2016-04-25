@@ -38,7 +38,7 @@ public class togoDAO {
                 "('"+ orderid+"', '"+cartItem.getItemNo()+"',"+cartItem.getQuantity()+")";
                 st.executeUpdate(sql);                  
 		} catch (SQLException e) {
-			e.printStackTrace();
+		e.printStackTrace();
 		}
     }
 

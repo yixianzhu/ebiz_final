@@ -20,7 +20,7 @@ import java.util.List;
  * @author xun yang
  */
 public class ReservationDao {
-     private Connection connection;
+    private Connection connection;
 
     public ReservationDao() {
         connection = DatabaseConnection.getConnection();
