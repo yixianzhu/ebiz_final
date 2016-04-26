@@ -218,3 +218,16 @@ function checkrDate() {
         $(".status18").html("Invalid date. Please follow: mm/dd");
     }       
 }
+
+function checkWalkinPhoneNumber() {
+    var inputrPhoneNumber = $("#inputWalkinPhoneNumber").val();
+    if (inputrPhoneNumber.length == 10) {
+        if (!/[^0-9]/.test(inputrPhoneNumber)) {
+            $(".status19").html("");
+        } else {
+            $(".status19").html("Invalid phone number");
+        }
+    }else{
+        $(".status19").html("Phone number code should be 10-digit");
+    }
+}

@@ -33,9 +33,17 @@
       <label for="name">Meal Name:</label>
       <input type="text" class="form-control" id="name" placeholder="Enter Meal Name" name="name" value="<c:out value="${meal.name}"/>" />
     </div>
-    <div class="form-group">
-      <label for="category">Meal Category:</label>
-      <input type="text" class="form-control" id="category" placeholder="Enter Meal Category" name="category" value="<c:out value="${meal.category}"/>" />
+    <div class="form-group">      
+       
+            <label for="category">Meal Category:</label>
+            <select name="category" class="form-control">
+              <option value="starter">Starter</option>
+              <option value="sandwich">Sandwich</option>
+              <option value="entry">Entry</option>
+              <option value="dessert">Dessert</option>
+              <option value="drink">Drink</option>
+            </select>
+           
     </div>
     <div class="form-group">
       <label for="description">Meal Description:</label>

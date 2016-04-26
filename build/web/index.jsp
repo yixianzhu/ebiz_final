@@ -83,6 +83,8 @@
         </div>
       </div>
     <div><a href ="newaccount.jsp">Create a new account</a></div>
+    <br/>
+    <div><a href ="index.html">Back to starting page</a></div>
     </form>  
       
   </div>

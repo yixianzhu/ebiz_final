@@ -29,11 +29,8 @@
     $(document).ready(function(){
         $('#addToCart').click(function () { 
         $('#TotalOrder').html(function(i, val) { return val*1+1; });
-        //    toastr.success('message', 'title'); });
-     //  toastr.info('add one item', 'Succcessfully'); });
         toastr.success('add one item', 'Succcessfully'); });
-      //   toastr.success('add one item', 'Succcessfully',position:'middle-center'); });
-        //    showStickySuccessToast();});
+      
       });
     
 </script>
@@ -53,7 +50,7 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MENU <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#starters">Starters<span class="badge">5</span></a></li>
+            <li><a href="#starters">Starters</a></li>
             <li><a href="#sandwiches">Sandwiches</a></li>
             <li><a href="#entries">Entries</a></li>
             <li><a href="#dessert">Dessert</a></li>
@@ -73,7 +70,6 @@
  <c:forEach items="${meals}" var="meal">
  <c:if test="${meal.category  == 'starter'}">         
      <div class="col-md-4 container">
-      <!--<form name="modelDetail1" method="POST" action="CartController">-->
       <img class="img-responsive" src="${meal.image}" alt="${meal.name}">
       <p class="floating-left">${meal.name}</p>       
       <p class="floating-right">Price: ${meal.price}</p>
@@ -87,10 +83,8 @@
           <input type='button' value='+' class='qtyplus' field='${meal.id}' />
           <input type="hidden" name="action" value="add"/>
           <input type="submit" name="addToCart" value="Add To Cart"/>
-          <!-- <button type="button" id="addToCart">Add To Cart</button> -->
       </form>
       <p class="after-box">${meal.description}</p>
-      <!--</form>-->
     </div>
 </c:if>
 </c:forEach>

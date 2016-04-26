@@ -42,7 +42,6 @@ public class  CloginServlet extends HttpServlet {
         Boolean valid = false;
         String p=request.getParameter("password");
         String u=request.getParameter("bbname");
-    //    String category=request.getParameter("category");
         String uname=null;
         String category=null;
         try{Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -85,12 +84,6 @@ public class  CloginServlet extends HttpServlet {
             else{
             cb.setStatus("Fail to log in, please try again!");
             String f2="/index.jsp";
-        //    if(category.equals("customer")){
-         //   f2="/clogin.jsp";
-         //   }
-         //   else{
-         //   f2="/mlogin.jsp";             
-         //   }
             RequestDispatcher rd = getServletContext().getRequestDispatcher(f2);                       
             rd.forward(request, response);
             }      

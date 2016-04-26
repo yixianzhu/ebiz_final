@@ -29,11 +29,7 @@
     $(document).ready(function(){
         $('#addToCart').click(function () { 
         $('#TotalOrder').html(function(i, val) { return val*1+1; });
-        //    toastr.success('message', 'title'); });
-     //  toastr.info('add one item', 'Succcessfully'); });
         toastr.success('add one item', 'Succcessfully'); });
-      //   toastr.success('add one item', 'Succcessfully',position:'middle-center'); });
-        //    showStickySuccessToast();});
       });
     
 </script>
@@ -54,7 +50,7 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">MENU <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#starters">Starters<span class="badge">5</span></a></li>
-            <li><a href="#sandwiches">Sandwiches</a></li><!-- 记得改！！！！！！ -->
+            <li><a href="#sandwiches">Sandwiches</a></li>
             <li><a href="#entries">Entries</a></li>
             <li><a href="#dessert">Dessert</a></li>
             <li><a href="#drinks">Drinks</a></li>

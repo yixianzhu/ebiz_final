@@ -87,7 +87,6 @@ public class CartController extends HttpServlet {
         String strPrice = request.getParameter("mealPrice");
         String strCategory = request.getParameter("mealCategory");
         String strQuantity = request.getParameter(strItemNo);
-//        System.out.println(strItemName+" "+strCategory+" "+strItemNo+" "+strPrice+" "+strQuantity);
 
         CartBean cartBean;
 

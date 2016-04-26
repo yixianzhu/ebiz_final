@@ -30,12 +30,8 @@
 <script  type="text/javascript">  
     $(document).ready(function(){
         $('#addToCart').click(function () { 
-        $('#TotalOrder').html(function(i, val) { return val*1+1; });
-        //    toastr.success('message', 'title'); });
-     //  toastr.info('add one item', 'Succcessfully'); });
+        $('#TotalOrder').html(function(i, val) { return val*1+1; });        
         toastr.success('add one item', 'Succcessfully'); });
-      //   toastr.success('add one item', 'Succcessfully',position:'middle-center'); });
-        //    showStickySuccessToast();});
       });
     
 </script>
@@ -99,7 +95,7 @@
       <p class="floating-left">${meal.name}</p>       
       <p class="floating-right">Price: ${meal.price}</p>
       <form class="floating-right2" id='myform' method='POST' action='AddToCart'>
-          <input type='button' value='quantity-' class='qtyminus' field='${meal.id}' />
+          <input type='button' value='-' class='qtyminus' field='${meal.id}' />
           <input type='text' name='${meal.id}' value='0' class='qty' />
           <input type='button' value='+' class='qtyplus' field='${meal.id}' />
           <input type='hidden' name='mealid' value='${meal.id}' class='mealid' id="meal" />

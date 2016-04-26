@@ -50,7 +50,7 @@ public class Dao {
             preparedStatement.setString(3, meal.getCategory());
             preparedStatement.setString(4, meal.getDescription());
             preparedStatement.setDouble(5, meal.getPrice());
-             preparedStatement.setString(6, meal.getImage());
+            preparedStatement.setString(6, meal.getImage());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -72,13 +72,14 @@ public class Dao {
 
     public void updateMeal(MealBean meal) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("update finalmeal set name=?, category=?, calories=?, price=?" +
+            PreparedStatement preparedStatement = connection.prepareStatement("update finalmeal set name=?, category=?, description=?, price=?,imagepath=?" +
                             "where id=?");          
             preparedStatement.setString(1, meal.getName());
             preparedStatement.setString(2, meal.getCategory());
             preparedStatement.setString(3, meal.getDescription());
             preparedStatement.setDouble(4, meal.getPrice());
-            preparedStatement.setString(5, meal.getId());
+            preparedStatement.setString(5, meal.getImage());
+            preparedStatement.setString(6, meal.getId());
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -177,7 +178,7 @@ public class Dao {
             preparedStatement.setString(3, rs.getString("mealid"));
             preparedStatement.setInt(4, rs.getInt("quantity"));  
             preparedStatement.setString(5, rs.getString("status"));
-             preparedStatement.setDouble(6, rs.getDouble("subtotal"));
+            preparedStatement.setDouble(6, rs.getDouble("subtotal"));
             preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {

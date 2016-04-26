@@ -90,7 +90,8 @@ public class Controller extends HttpServlet{
         String p=null;
         String hint=null;
         MealBean meal=new MealBean();
-       
+        Boolean isDouble=false;
+        Boolean check=false;
         System.out.println(isMultipart);
         if (isMultipart) {
             FileItemFactory factory = new DiskFileItemFactory();
@@ -106,9 +107,7 @@ public class Controller extends HttpServlet{
                   String fileName = item.getName();
                   String root = getServletContext().getRealPath("/");
                   String work= root.substring(0,root.indexOf("build"));
-         //     String root =  "/nbproject";
                   System.out.println("hi");
-            //      File path = new File(root + "/images");
             File path = new File(work + "/web/images");
                   if (!path.exists()) {
                       boolean status = path.mkdirs();
@@ -128,25 +127,44 @@ public class Controller extends HttpServlet{
                     case "name":meal.setName(fieldValue);break;
                     case "category":meal.setCategory(fieldValue);break;
                     case "description":meal.setDescription(fieldValue);break;
-                    case "price":meal.setPrice(Double.parseDouble(fieldValue));break;
+                    case "price":
+                    //    meal.setPrice(Double.parseDouble(fieldValue));
+                        try{
+                        Double.parseDouble(fieldValue);
+                        isDouble=true;
+                        }     
+                        catch (Exception e) {
+                        System.err.println("An Exception was caught: " + e.getMessage());
+                        }
+                  if(isDouble==true){
+                  if(Double.parseDouble(fieldValue)>0){           
+                  meal.setPrice(Double.parseDouble(fieldValue));
+                  check=true;
+                }
+                }        
+                        break;
                     case "hint":hint=fieldValue;break;
                 }
               }
           }
       } catch (FileUploadException e) {
-          e.printStackTrace();
+         System.err.println("An Exception was caught: " + e.getMessage());
       } catch (Exception e) {
-          e.printStackTrace();
+         System.err.println("An Exception was caught: " + e.getMessage());
       }
-    } 
+    }
+        System.out.println(hint);
+        if(check==true){
         if(hint.equals("update")){        
         dao.updateMeal(meal);       
         }
         else{    
         dao.addMeal(meal);            
         }   
-        RequestDispatcher view = request.getRequestDispatcher(LIST_MEAL);
-        request.setAttribute("meals", dao.getAllMeal());
+        }
+     //   response.sendRedirect(CHANGE); 
+        RequestDispatcher view = request.getRequestDispatcher(CHANGE);
+     //   request.setAttribute("meals", dao.getAllMeal());
         view.forward(request, response);
     }
 }

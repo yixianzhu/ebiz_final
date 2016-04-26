@@ -37,7 +37,7 @@ public class giftcardDAO {
                 "('"+ purchaseid+"', '"+senderName+"', '"+senderEmail+"',"+amount+",'"+receiverName+"','"+receiverEmail+"','"+years+"','"+month+"','"+day+"')";
             st.executeUpdate(sql);   
         }catch (SQLException e) {
-			e.printStackTrace();
+			 System.err.println("A SQLException was caught: " + e.getMessage());
 		}
     }
 

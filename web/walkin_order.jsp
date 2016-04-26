@@ -69,23 +69,6 @@ img{
             </c:forEach>
 </table>
     </div>
-   <!-- <table border=1>
-        <thead>
-            <tr>
-                <th>Meal Id</th>
-                <th>Name</th>
-                <th>Category</th>  class="img-responsive" 
-                <th>Description</th>       alt=""          
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>     </th>
-                <th>     </th>
-            </tr>
-        </thead>
-        <tbody>
-           
-        </tbody>
-    </table>  -->
     <br/>
     <a href="AddToCart?action=confirm">Confirm you order</a>
     <br/>

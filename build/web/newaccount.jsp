@@ -33,8 +33,8 @@
                     <tr>
                         <td>Account Type:</td>
                         <td><select type="text" name="category" id="category">
-                        <option value="customer">Manager</option>
-                        <option value="manager">Staff</option>  
+                        <option value="manager">Manager</option>
+                        <option value="staff">Staff</option>  
                         </select>
                         </td>
                     </tr>
@@ -45,7 +45,7 @@
                     </tr>
                 </tbody>
             </table>
-            <p><a href ="index.jsp">Back to the first page</a></p>
+            <p><a href ="index.jsp">Back to log in page</a></p>
         </form>
     </body>
 </html>

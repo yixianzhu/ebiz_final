@@ -57,7 +57,7 @@ public class CartBean {
             }
         }catch(NumberFormatException nfe){
             System.out.println("Error while parsing from String to primitive types: "+nfe.getMessage());
-            nfe.printStackTrace();
+           
         }
     }
 
@@ -69,7 +69,7 @@ public class CartBean {
             calculateOrderTotal();
         }catch(NumberFormatException nfe){
             System.out.println("Error while deleting cart item: " + nfe.getMessage());
-            nfe.printStackTrace();
+          
         }
     }
 
@@ -92,21 +92,11 @@ public class CartBean {
             }
         }catch (NumberFormatException nfe){
             System.out.println("Error while update cart:" + nfe.getMessage());
-            nfe.printStackTrace();
+            
         }
     }
 
-//    public void addCartItem(CartItemBean cartItem){
-//        alCartItems.add(cartItem);
-//    }
 
-    // public CartItemBean getCartItem(String iItemNo){
-    //     CartItemBean cartItem = null;
-    //     if(alCartItems.size()>iItemNo){
-    //         cartItem = (CartItemBean) alCartItems.get(iItemNo);
-    //     }
-    //     return cartItem;
-    // }
 
     public ArrayList getCartItems() {
         ArrayList ALalCartItems = new ArrayList<CartItemBean>();
@@ -115,10 +105,6 @@ public class CartBean {
         }
         return ALalCartItems;
     }
-    
-    // public void setCartItems(ArrayList alCartItems) {
-    //      this.alCartItems = alCartItems;
-    // }
     
     public double getTotalCost() {
         return totalCost;
@@ -145,7 +131,7 @@ public class CartBean {
             }
         }catch (NumberFormatException nfe){
             System.out.println("Error while set tips:" + nfe.getMessage());
-            nfe.printStackTrace();
+            
         }
     }
 

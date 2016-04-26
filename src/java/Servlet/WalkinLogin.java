@@ -61,63 +61,10 @@ public class WalkinLogin extends HttpServlet {
          f= "/Controller?action=walkinmenu";
         }
         else {
-             f= "/walkin.html"; 
+             f= "/walkin.jsp"; 
         }
         RequestDispatcher rd = getServletContext().getRequestDispatcher(f);
         rd.forward(request, response);
-    //    String category=request.getParameter("category");
-    /*    String uname=null;
-        String category=null;
-        try{Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String connectionURL = "jdbc:derby://localhost:1527/user";
-            conn = DriverManager.getConnection(connectionURL, "yang", "19890914");
-            st = conn.createStatement();
-            String q1 = new String("SELECT * FROM userinfo WHERE user_name = "+"'"+
-                    u+"'");
-            rs =  st.executeQuery(q1);
-            while(rs.next()){          
-                check = rs.getString("PASS");
-                uname=rs.getString("name");
-                category=rs.getString("category");
-                valid=true;
-            }            
-        }
-        catch( ClassNotFoundException cnfe)
-        {
-            System.err.println("A ClassNotFoundException was caught: " + cnfe.getMessage());
-        }
-        catch (SQLException se)
-        {          
-            System.err.println("A SQLException was caught: " + se.getMessage()); 
-        } 
-    */
-     /*    if(p.equals(check) && valid==true){    
-            cb.setStatus("Login successfully!");
-            cb.setName(uname);
-            cb.setUserid(u);
-            userid=u;
-            String f=null;           
-            if(category.equals("customer")){
-            f="/staff.jsp";
-            }
-            else{
-            f="/manager.jsp";             
-            }
-            RequestDispatcher rd = getServletContext().getRequestDispatcher(f);
-            rd.forward(request, response);
-            }
-            else{
-            cb.setStatus("Fail to log in, please try again!");
-            String f2="/index.jsp";
-        //    if(category.equals("customer")){
-         //   f2="/clogin.jsp";
-         //   }
-         //   else{
-         //   f2="/mlogin.jsp";             
-         //   }
-            RequestDispatcher rd = getServletContext().getRequestDispatcher(f2);                       
-            rd.forward(request, response);
-            }    */  
     }
     
 

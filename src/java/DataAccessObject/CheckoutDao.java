@@ -44,9 +44,7 @@ public class CheckoutDao {
             double totalCharge=tip+total;
             c.setCost(totalCharge);
             insertorder(orderid, WalkinLogin.userid, total, tip, totalCharge,employeeid);
-            deleteTable(tableid);
-    //    ResultSet rs2 = statement.executeQuery("INSERT INTO IS2730.ORDERDETAIL (ORDERID, MEALID, QUANTITY) VALUES " +
-      //          "('"+ orderid+"', '"+mealid+"',"+cartItem.getQuantity()+")"); 
+            deleteTable(tableid); 
         } catch (SQLException e) {
         System.err.println("A SQLException was caught: " + e.getMessage());
         }

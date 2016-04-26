@@ -69,13 +69,11 @@ public final class home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("      </button>\r\n");
       out.write("      <a class=\"navbar-brand\" href=\"#myPage\">Seudo</a>\r\n");
       out.write("    </div>\r\n");
-      out.write("<!--    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\r\n");
+      out.write("    <div class=\"collapse navbar-collapse\" id=\"myNavbar\">\r\n");
       out.write("      <ul class=\"nav navbar-nav navbar-right\">\r\n");
-      out.write("        <li><a href=\"home.html\" >Home</a></li>\r\n");
-      out.write("        <li><a href=\"Controller?action=menu\" title=\"Menu\">Menu</a></li>\r\n");
-      out.write("        <li><a href=\"myorder.html\">MY ORDERS<span class=\"badge\">7</span></a></li> 记得改！！！！！！ \r\n");
+      out.write("        <li><a href=\"index.html\">Back to Starting Page</a></li>\r\n");
       out.write("      </ul>\r\n");
-      out.write("    </div>-->\r\n");
+      out.write("    </div>\r\n");
       out.write("  </div>\r\n");
       out.write("</nav>\r\n");
       out.write("\r\n");

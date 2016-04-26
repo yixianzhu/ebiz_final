@@ -17,6 +17,7 @@
   <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="js/validateinput.js"></script>
   <style>
     body{
       background:url("Pic/walkin_bg.jpg") no-repeat center fixed;
@@ -52,6 +53,10 @@
       height: 180px;
       clear:both;
     } 
+    .status19{
+            color:red;
+            font-size: 80%;
+          }
   </style>
 </head>
   <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
@@ -59,38 +64,24 @@
   <div class="col-sm-6 infobox">
     <form class="form-horizontal " role="form" action='WalkinLogin'>
       <h3 class="center">One step before menu. Please enter:</h3>
-   <!--   <div class="form-group"> 
-        <label for="inputTableNumber" class="col-sm-4 control-label">Table number</label>
-        <div class="col-sm-8">
-          <input type="tableNumber" class="form-control" id="inputTableNumber" />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="inputPhoneNumber" class="col-sm-4 control-label">Phone number*</label>
-        <div class="col-sm-8">
-          <input type="phoneNumber" class="form-control" id="inputPhoneNumber" />
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-12">
-          <div class="checkbox">               
-            <label><input type="checkbox"/>Yes, I want to receive messages from XXX.</label>
-          </div>
-        </div>
-      </div>    -->
     <div class="form-group"> 
         <label for="inputTableNumber" class="col-sm-4 control-label">Table number*</label>
         <div class="col-sm-8">
-          <input type="text" name='table' class="form-control" id="inputTableNumber" />
-        </div>
+            <select name="table" class="form-control">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select>
+       </div>       
       </div>
 
       <div class="form-group">
         <label for="inputPhoneNumber" class="col-sm-4 control-label">Phone number*</label>
         <div class="col-sm-8">
-          <input type="text" name='phone' class="form-control" id="inputPhoneNumber" />
+          <input type="text" name='phone' class="form-control" id="inputWalkinPhoneNumber" onkeyup="checkWalkinPhoneNumber(); return false;" required/><span class="status19"></span>
         </div>
       </div>
 
@@ -109,6 +100,7 @@
           <li>More information please consult our manager</li>
         </ul>
       </div>
+      <div><a href ="home.jsp">Back to home page</a></div>
     </form>  
   </div>
   <div class="col-sm-3"></div>

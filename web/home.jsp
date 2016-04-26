@@ -30,13 +30,11 @@
       </button>
       <a class="navbar-brand" href="#myPage">Seudo</a>
     </div>
-<!--    <div class="collapse navbar-collapse" id="myNavbar">
+    <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="home.html" >Home</a></li>
-        <li><a href="Controller?action=menu" title="Menu">Menu</a></li>
-        <li><a href="myorder.html">MY ORDERS<span class="badge">7</span></a></li> 记得改！！！！！！ 
+        <li><a href="index.html">Back to Starting Page</a></li>
       </ul>
-    </div>-->
+    </div>
   </div>
 </nav>
 

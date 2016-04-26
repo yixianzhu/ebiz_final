@@ -54,7 +54,7 @@ public class togoDAO {
             st.executeUpdate(sql);  
                 
 	    } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("A SQLException was caught: " + e.getMessage());
 	    }
     }
 
@@ -68,7 +68,7 @@ public class togoDAO {
             st.executeUpdate(sql);  
                 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("A SQLException was caught: " + e.getMessage());
         }
     }
     public void updateTempCook(String orderid) {

@@ -31,21 +31,7 @@ th
 background-color:green;
 color:white;
 }
-/*body
-{
-	text-align: center;
-}*/
-/*.container
-{
-	margin-left: auto;
-	margin-right: auto;
-	width: 40em;
-}*/
-/*h2
-{
-	font-family: 'Oxygen', sans-serif;
-	color:#1E90FF;
-}*/
+
 img{
     height: 100%;
       width: 100%;
@@ -58,15 +44,8 @@ $(document).ready(function() {
     var notify='notify';
     console.log(notify);
     showNotification();
-           //      $.get('ReservationNotification',{notification:notify},function(responseText) { 
-                 //   $.get('ReservationNotification',function(responseText) { 
-                //        $('#notification').text(responseText);         
-                //    });
-
-   // $("#tablediv").hide();
     $("#tablediv2").hide();
     $("#tablediv3").hide();
-   // showMenu();
     refreshTable();
     $("#showTable").click(function(event){
     $("#tablediv2").hide();
@@ -96,16 +75,22 @@ $(document).ready(function() {
 
     function refreshTable(){
         
-	// $("#tablediv").hide();
-   //  $("#showTable").click(function(event){
            $.get('PopulateTable',function(responseJson) {
                setTimeout(refreshTable, 2000);
         	   if(responseJson!=null){
                    
             	   $("#mealtable1").find("tr:gt(0)").remove(); //remove all rows except the first
             	   var table1 = $("#mealtable1");
-                  $("#mealtable2").find("tr:gt(0)").remove(); //remove all rows except the first
+                  $("#mealtable2").find("tr:gt(0)").remove(); 
             	  var table2 = $("#mealtable2");
+                  $("#mealtable3").find("tr:gt(0)").remove();
+            	  var table3 = $("#mealtable3");
+                  $("#mealtable4").find("tr:gt(0)").remove(); 
+            	  var table4 = $("#mealtable4");
+                  $("#mealtable5").find("tr:gt(0)").remove(); 
+            	  var table5 = $("#mealtable5");
+                  $("#mealtable6").find("tr:gt(0)").remove(); 
+            	  var table6 = $("#mealtable6");
 	               $.each(responseJson, function(key,value) { 
                                if(value['status']=='Not served'){
 	               	       var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><a href=\"TableController?action=serve&tableid="+value['tableid']+"&mealid="+value['id']+"\">Serve it</a></td></tr>");
@@ -127,24 +112,30 @@ $(document).ready(function() {
                                else if (value['tableid']=='2'){
                                rowNew.appendTo(table2); 
                                }
+                               else if (value['tableid']=='3'){
+                               rowNew.appendTo(table3); 
+                               }
+                               else if (value['tableid']=='4'){
+                               rowNew.appendTo(table4); 
+                               }
+                               else if (value['tableid']=='5'){
+                               rowNew.appendTo(table5); 
+                               }
+                               else if (value['tableid']=='6'){
+                               rowNew.appendTo(table6); 
+                               }
 	               });
                 }
             });
 }
 function showTogo(){
-        
-	// $("#tablediv").hide();
-   //  $("#showTable").click(function(event){
            $.get('TogoOrder',function(responseJson) {
                setTimeout(showTogo, 2000);
         	   if(responseJson!=null){
                    
             	   $("#togo").find("tr:gt(0)").remove(); //remove all rows except the first
             	   var pick = $("#togo");
-             //     $("#mealtable2").find("tr:gt(0)").remove(); //remove all rows except the first
-            //	  var table2 = $("#mealtable2");
 	               $.each(responseJson, function(key,value) { 
-                           //    if(value['status']=='Not served'){
 	               	       var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td><a href=\"TogoController?action=cook&orderid="+value['orderid']+"\">Finish</a></td><td></td><td><a href=\"TogoController?action=collect&orderid="+value['orderid']+"\">Finish</a></td><td><a href=\"TogoController?action=delete&orderid="+value['orderid']+"\">Delete</a></td></tr>");
                                rowNew.children().eq(0).text(value['orderid']); 
 	                       rowNew.children().eq(1).text(value['cname']); 
@@ -165,16 +156,11 @@ function showTogo(){
             });
 }
     function showMenu(){
-        
-	// $("#tablediv").hide();
-   //  $("#showTable").click(function(event){
            $.get('ManageMenu',function(responseJson) {
-            //   setTimeout(showMenu, 2000);
         	   if(responseJson!=null){
             	   $("#mealmenu").find("tr:gt(0)").remove(); //remove all rows except the first
             	   var table1 = $("#mealmenu");
-	               $.each(responseJson, function(key,value) {
-                      //        console.log(value['image']);	              
+	               $.each(responseJson, function(key,value) {	              
                        var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td><img src=\""+value['image']+"\"/></td><td><a href=\"Controller?action=edit&mealId="+value['id']+"\">update</a></td><td><a href=\"Controller?action=delete&mealId="+value['id']+"\">delete</a></td></tr>");
                        
 	                       rowNew.children().eq(0).text(value['id']); 
@@ -182,16 +168,10 @@ function showTogo(){
 	                       rowNew.children().eq(2).text(value['category']); 
                                rowNew.children().eq(3).text(value['description']);
 	                       rowNew.children().eq(4).text(value['price']); 
-                         //      rowNew.children().eq(5).text("<a href=\"Controller?action=edit&mealId="+value['id']+"\">Update</a>");
-                     //    if (value['category']=='starter'){
-	                       rowNew.appendTo(table1);
-                      //     }
-	                       
+	                       rowNew.appendTo(table1);	                       
 	               });
                 }
             });
-          //   $("#tablediv").show();      
-          //  });
  }
 </script>
 </head>
@@ -203,8 +183,9 @@ function showTogo(){
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
-      </button>
+      </button>     
       <a class="navbar-brand" href="#myPage">Seudo</a>
+      
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
@@ -223,6 +204,7 @@ function showTogo(){
     <div id="tablediv">
       <div class="row">
         <div class="col-md-6 container">
+          <h2>Table 1</h2>
           <h2>Table 1</h2>
           <table cellspacing="5" id="mealtable1"> 
               <tr> 
@@ -249,6 +231,7 @@ function showTogo(){
 
         <div class="col-md-6 container">
           <h2>Table 2</h2>
+          <h2>Table 2</h2>
           <table cellspacing="5" id="mealtable2"> 
             <tr> 
               <th scope="col">Table Id</th> 
@@ -271,7 +254,104 @@ function showTogo(){
           </form>
         </div> 
       </div>
-    </div>
+      <div class="row">
+        <div class="col-md-6 container">
+          <h2>Table 3</h2>
+          <table cellspacing="5" id="mealtable3"> 
+            <tr> 
+              <th scope="col">Table Id</th> 
+              <th scope="col">Meal Id</th> 
+              <th scope="col">Name</th> 
+              <th scope="col">Category</th> 
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+              <th scope="col">Status</th>        
+              <th scope="col">Action</th>         
+            </tr> 
+          </table>
+          <form role="form" action="Checkout" method="POST" name="checkout">
+            <input type="hidden" name="tableid" value="3" />
+              <div class="form-group">
+                <label for="id">Employee ID:</label>
+                <input type="text" class="form-control" id="employeeid" placeholder="Enter your ID" name="employeeid" size="4"/>
+              </div>
+            <input type="submit" name="Submit" value="Check out for table 3">
+          </form>
+        </div> 
+          <div class="col-md-6 container">
+          <h2>Table 4</h2>
+          <table cellspacing="5" id="mealtable4"> 
+            <tr> 
+              <th scope="col">Table Id</th> 
+              <th scope="col">Meal Id</th> 
+              <th scope="col">Name</th> 
+              <th scope="col">Category</th> 
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+              <th scope="col">Status</th>        
+              <th scope="col">Action</th>         
+            </tr> 
+          </table>
+          <form role="form" action="Checkout" method="POST" name="checkout">
+            <input type="hidden" name="tableid" value="4" />
+              <div class="form-group">
+                <label for="id">Employee ID:</label>
+                <input type="text" class="form-control" id="employeeid" placeholder="Enter your ID" name="employeeid" size="4"/>
+              </div>
+            <input type="submit" name="Submit" value="Check out for table 4">
+          </form>
+        </div> 
+      </div>
+      <div class="row">
+          <div class="col-md-6 container">
+          <h2>Table 5</h2>
+          <table cellspacing="5" id="mealtable5"> 
+            <tr> 
+              <th scope="col">Table Id</th> 
+              <th scope="col">Meal Id</th> 
+              <th scope="col">Name</th> 
+              <th scope="col">Category</th> 
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+              <th scope="col">Status</th>        
+              <th scope="col">Action</th>         
+            </tr> 
+          </table>
+          <form role="form" action="Checkout" method="POST" name="checkout">
+            <input type="hidden" name="tableid" value="5" />
+              <div class="form-group">
+                <label for="id">Employee ID:</label>
+                <input type="text" class="form-control" id="employeeid" placeholder="Enter your ID" name="employeeid" size="4"/>
+              </div>
+            <input type="submit" name="Submit" value="Check out for table 5">
+          </form>
+        </div> 
+          <div class="col-md-6 container">
+          <h2>Table 6</h2>
+          <table cellspacing="5" id="mealtable6"> 
+            <tr> 
+              <th scope="col">Table Id</th> 
+              <th scope="col">Meal Id</th> 
+              <th scope="col">Name</th> 
+              <th scope="col">Category</th> 
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+              <th scope="col">Status</th>        
+              <th scope="col">Action</th>         
+            </tr> 
+          </table>
+          <form role="form" action="Checkout" method="POST" name="checkout">
+            <input type="hidden" name="tableid" value="6" />
+              <div class="form-group">
+                <label for="id">Employee ID:</label>
+                <input type="text" class="form-control" id="employeeid" placeholder="Enter your ID" name="employeeid" size="4"/>
+              </div>
+            <input type="submit" name="Submit" value="Check out for table 6">
+          </form>
+        </div> 
+      </div>
+      </div>
+    
 
     <div id="tablediv2" class="container-fluid">
       <br/> <br/>

@@ -36,15 +36,6 @@ public class AddToCart extends HttpServlet{
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-     /*   MealBean meal=new MealBean();
-        CalebBean user=new CalebBean();
-        user.setUserid(WalkinLogin.userid);
-        user.setTableid(WalkinLogin.tableid);
-        System.out.println(WalkinLogin.tableid);
-        meal.setId(request.getParameter("mealid"));
-        String mealid=request.getParameter("mealid");
-        String quantity=request.getParameter(mealid);
-        user.setQuantity(Integer.parseInt(quantity)); */
         String cartAction = request.getParameter("action");
         if(cartAction == null && cartAction.equals("")){
             // System.out.println("The action is null");
@@ -52,24 +43,34 @@ public class AddToCart extends HttpServlet{
             // System.out.println("The action is not null");
             if(cartAction.equals("add")){
                MealBean meal=new MealBean();
-        CalebBean user=new CalebBean();
-        user.setUserid(WalkinLogin.userid);
-        user.setTableid(WalkinLogin.tableid);
-        System.out.println(WalkinLogin.tableid);
-        meal.setId(request.getParameter("mealid"));
-        String mealid=request.getParameter("mealid");
-        String quantity=request.getParameter(mealid);
-        user.setQuantity(Integer.parseInt(quantity));
-               System.out.println("add an item!");       
-               dao.addTableCart(meal,user);
-               response.sendRedirect("Controller?action=walkinmenu");
-     
+               CalebBean user=new CalebBean();
+               user.setUserid(WalkinLogin.userid);
+               user.setTableid(WalkinLogin.tableid);
+               System.out.println(WalkinLogin.tableid);
+               meal.setId(request.getParameter("mealid"));
+               String mealid=request.getParameter("mealid");
+               String quantity=request.getParameter(mealid);
+               Boolean isInt=false;
+               try{
+                  Integer.parseInt(quantity);
+                  isInt=true;
+                }     
+                 catch (Exception e) {
+                 System.err.println("An Exception was caught: " + e.getMessage());
+                }
+               if(isInt==true){
+                  if(Integer.parseInt(quantity)>0){           
+                  user.setQuantity(Integer.parseInt(quantity));
+                  System.out.println("add an item!");       
+                  dao.addTableCart(meal,user);
+                }
+                }        
+                response.sendRedirect("Controller?action=walkinmenu");              
             }
             else if(cartAction.equals("confirm")){
                System.out.println("confirm items!");       
                dao.confirmCart();
-               response.sendRedirect("Controller?action=walkinmenu");
-     
+               response.sendRedirect("Controller?action=walkinmenu");     
             }
         }
     }

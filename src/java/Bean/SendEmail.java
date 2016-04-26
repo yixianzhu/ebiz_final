@@ -40,8 +40,7 @@ public class SendEmail {
 
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("yang2015newstart@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO,
-		//		InternetAddress.parse("XUY16@pitt.edu"));
+			message.setRecipients(Message.RecipientType.TO,		
                                 InternetAddress.parse(receiver));
 			message.setSubject("Reservation Confirmation");
 			message.setText("Dear customer,"

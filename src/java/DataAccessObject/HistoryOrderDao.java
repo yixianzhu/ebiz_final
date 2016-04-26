@@ -50,8 +50,7 @@ public class HistoryOrderDao {
             while (rs.next()) {
                 System.out.println("hi,yang");
                 HistoryBean history = new HistoryBean();
-                history.setMealid(rs.getString("mealid"));
-             //   history.setMealname(rs.getString("name"));
+                history.setMealid(rs.getString("mealid"));            
                 history.setQuantity(rs.getInt("s"));              
                 histories.add(history);
             }
